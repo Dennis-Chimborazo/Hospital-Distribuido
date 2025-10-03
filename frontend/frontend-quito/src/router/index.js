@@ -14,7 +14,6 @@ import EspecialidadListarView from '@/views/especialidad/EspecialidadListarView.
 import SecretariaListarView from '@/views/secretaria/SecretariaListarView.vue'
 
 // Otras vistas
-import CuencaView from '@/views/sucursales/CuencaVIew.vue' // (verifica el nombre de archivo)
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,7 +22,6 @@ const router = createRouter({
     { path: '/', name: 'home', component: HomeView },
     { path: '/access-user', name: 'AccessUser', component: UserAccess },
     { path: '/login', name: 'Login', component: LoginView },
-    { path: '/cuenca-view', name: 'CuencaView', component: CuencaView },
 
     // Layout de administración (navbar izq + section derecha)
     {
