@@ -1,0 +1,67 @@
+Guía para crear un Replica Set de MongoDB con Docker en Windows
+1. Objetivo
+
+Configurar un Replica Set de MongoDB para desarrollo en Windows utilizando Docker, con:
+
+1 nodo Primary
+
+2 nodos Secondary
+
+Persistencia de datos mediante volúmenes Docker
+
+Esto permite probar replicación, alta disponibilidad y tolerancia a fallos.
+
+2. Requisitos
+
+Windows con Docker Desktop instalado y ejecutándose.
+
+Conocimientos básicos de Docker y línea de comandos.
+
+mongosh instalado o incluido en la imagen oficial de MongoDB 7.0.
+
+3. Creación del archivo docker-compose.yml
+
+Crear un archivo llamado docker-compose.yml en la carpeta del proyecto.
+
+Definir los servicios para primary y secundarios, con puertos distintos y replicación habilitada:
+4. Levantar los contenedores
+
+Abrir PowerShell en la carpeta donde está el docker-compose.yml.
+
+Ejecutar:
+
+docker-compose up -d
+
+
+Verificar que los contenedores están corriendo:
+
+docker ps
+
+
+Deberías ver los tres contenedores con puertos 27017, 27018 y 27019.
+
+5. Inicializar el Replica Set
+
+Conectarse al contenedor primary:
+
+docker exec -it mongo-primary mongosh
+
+
+Ejecutar la configuración del Replica Set:
+
+rs.initiate({
+  _id: "rs0",
+  members: [
+    { _id: 0, host: "mongo-primary:27017" },
+    { _id: 1, host: "mongo-secondary1:27017" },
+    { _id: 2, host: "mongo-secondary2:27017" }
+  ]
+})
+
+
+Verificar el estado:
+
+rs.status()
+
+
+Debe mostrar PRIMARY para mongo-primary y SECONDARY para los demás nodos.
