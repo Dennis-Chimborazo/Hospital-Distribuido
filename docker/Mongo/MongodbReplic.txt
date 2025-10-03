@@ -65,3 +65,5 @@ rs.status()
 
 
 Debe mostrar PRIMARY para mongo-primary y SECONDARY para los demás nodos.
+
+estructura base para la replicación
