@@ -1,20 +1,23 @@
 <script setup>
-import {RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col bg-gradient-to-b from-sky-50 via-white to-cyan-50 text-slate-800">
-    <main class="flex-1">
+  <div class="relative min-h-screen flex flex-col bg-[#0b1220] text-slate-200">
+    <!-- Contenido principal -->
+    <main class="flex-1 pb-20 overflow-y-auto">
       <RouterView />
     </main>
-    <footer class="border-t border-slate-200/70">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 text-sm text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-4">
+
+    <!-- Footer fijo al fondo -->
+    <footer class="fixed bottom-0 left-0 right-0 z-50 bg-[#0b1220]/95 border-t border-slate-800 backdrop-blur-sm">
+      <div
+        class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 text-sm text-slate-300 flex flex-col sm:flex-row justify-between items-center gap-4">
         <span>© {{ new Date().getFullYear() }} Hospital Vida Sana. Todos los derechos reservados.</span>
-        
         <nav class="flex items-center gap-4">
-          <a href="#" class="hover:underline">Términos</a>
-          <a href="#" class="hover:underline">Privacidad</a>
-          <a href="#" class="hover:underline">Soporte</a>
+          <a href="#" class="hover:text-cyan-400 transition-colors">Términos</a>
+          <a href="#" class="hover:text-cyan-400 transition-colors">Privacidad</a>
+          <a href="#" class="hover:text-cyan-400 transition-colors">Soporte</a>
         </nav>
       </div>
     </footer>

@@ -17,7 +17,7 @@ const sucursales = [
     id: 'Guayaquil',
     nombre: 'Guayaquil',
     ciudad: 'Sucursal',
-    imagenUrl: 'https://images.unsplash.com/photo-1529101091764-c3526daf38fe?q=80&w=1200&auto=format&fit=crop'
+    imagenUrl: 'https://media.licdn.com/dms/image/v2/C561BAQGbGQBA_BcRMA/company-background_10000/company-background_10000/0/1604957424670/hospital_de_los_valles_cover?e=2147483647&v=beta&t=PzpzP8WaXRKW4_Tq_VR0APfSzd6OqVq6VWwIMFnK3T4'
   },
   {
     id: 'Cuenca',
@@ -48,7 +48,7 @@ function onSelect(sucursal) {
     <!-- BOTÓN VOLVER -->
     <RouterLink 
       to="/" 
-      class="mb-6 inline-flex items-center gap-2 rounded-xl border border-cyan-600 px-4 py-2 text-sm font-medium text-cyan-700 hover:bg-cyan-600 hover:text-white transition focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2"
+        class="btn-primary absolute top-4 left-4"
     >
       Volver
     </RouterLink>
@@ -58,17 +58,18 @@ function onSelect(sucursal) {
       <p class="mt-1 text-slate-600">Esta elección definirá el contexto para el siguiente paso.</p>
     </header>
 
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      <LoginCard
-        v-for="s in sucursales"
-        :key="s.id"
-        :id="s.id"
-        :nombre="s.nombre"
-        :ciudad="s.ciudad"
-        :imagenUrl="s.imagenUrl"
-        :selected="seleccion === s.id"
-        @select="onSelect"
-      />
-    </div>
+    <div class="branches-grid">
+        <LoginCard
+          v-for="s in sucursales"
+          :key="s.id"
+          :id="s.id"
+          :nombre="s.nombre"
+          :ciudad="s.ciudad"
+          :imagenUrl="s.imagenUrl"
+          :selected="seleccion === s.id"
+          @select="onSelect"
+        />
+      </div>
+
   </section>
 </template>
