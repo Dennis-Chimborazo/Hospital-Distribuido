@@ -1,20 +1,25 @@
 import mongoose from "mongoose";
 
-//const uri = "mongodb://localhost:27017/hospital?directConnection=true";
-
-
 export const mongoDB = async () => {
-  let connected = false;
+  // ----------------------------------------------------------------------
+  // 🎯 CONEXIÓN SIMPLE DENTRO DE DOCKER
+  // Usamos 'mongodb' (el nombre del servicio en el docker-compose.yml)
+  // en lugar de 'localhost' o IPs.
+  // ----------------------------------------------------------------------
+  
+  // Asume que el servicio en docker-compose se llama 'mongodb'
+  // y la base de datos que quieres usar dentro de Mongo se llama 'hospital'.
+  const uri = "mongodb://mongodb:27017/hospital";
 
-  while (!connected) {
+  for (;;) {
     try {
-      // Conexión a MongoDB replica set
-      await mongoose.connect("mongodb://localhost:27017/hospital");
-      console.log("✅ MongoDB Connected to Replica Set");
-      connected = true;
+      await mongoose.connect(uri);
+      // Cambiamos el mensaje para reflejar que es una conexión simple
+      console.log("✅ MongoDB Connected (simple container)"); 
+      break;
     } catch (err) {
-      console.error("❌ MongoDB failed to connect, retrying in 5s...", err.message);
-      await new Promise((res) => setTimeout(res, 5000));
+      console.error(`❌ MongoDB failed to connect at ${uri}, retrying in 5s...`, err.message);
+      await new Promise(r => setTimeout(r, 5000));
     }
   }
 };
