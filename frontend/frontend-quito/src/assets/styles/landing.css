@@ -1338,3 +1338,91 @@ html, body, #app { height: 100%; margin: 0; }
 .modulo-tabla-card .vgt-responsive{
   background:#fff;
 }
+
+/* ======================================================
+   Modal Crear Especialidad — tema claro con acento esmeralda
+   ====================================================== */
+.esp-modal{
+  --esm-50:#ecfdf5; --esm-100:#d1fae5; --esm-200:#a7f3d0;
+  --esm-300:#6ee7b7; --esm-400:#34d399; --esm-500:#10b981; --esm-600:#059669;
+  --slate-900:#0f172a; --slate-700:#334155; --slate-600:#475569; --slate-300:#cbd5e1;
+
+  border:1px solid #e6f4ee;
+  background:
+    radial-gradient(900px 400px at 120% -20%, rgba(16,185,129,.10) 0%, transparent 70%),
+    radial-gradient(900px 400px at -20% 120%, rgba(203,213,225,.22) 0%, transparent 65%),
+    #ffffff;
+  box-shadow: 0 18px 45px rgba(2,6,23,.10);
+}
+
+/* Header con degradado suave */
+.esp-modal .esp-head{
+  background: linear-gradient(180deg, #f3fbf8 0%, #ecfdf5 100%);
+  border-bottom:1px solid var(--esm-100);
+}
+.esp-modal .esp-head h2{ color: var(--slate-900); font-weight: 800; }
+.esp-modal .esp-head p{ color: var(--slate-600); }
+
+/* Body: scrollbar sutil y padding cómodo */
+.esp-modal .esp-body{
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent;
+}
+.esp-modal .esp-body::-webkit-scrollbar{ width: 8px; }
+.esp-modal .esp-body::-webkit-scrollbar-thumb{ background:#cbd5e1; border-radius: 9999px; }
+
+/* Inputs / Textareas coherentes con acento esmeralda */
+.esp-modal input[type="text"],
+.esp-modal textarea{
+  border:1px solid #e2e8f0;
+  background:#fff;
+  color: var(--slate-900);
+  border-radius: 12px;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+.esp-modal input[type="text"]:hover,
+.esp-modal textarea:hover{
+  border-color: #d0e7de;
+}
+.esp-modal input[type="text"]:focus,
+.esp-modal textarea:focus{
+  border-color: var(--esm-500);
+  box-shadow: 0 0 0 3px rgba(16,185,129,.25);
+  outline: none;
+}
+
+/* Footer pegajoso con leve blur */
+.esp-modal .esp-foot{
+  position: sticky; bottom: 0; z-index: 5;
+  background: rgba(255,255,255,.85);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-top:1px solid var(--esm-100);
+}
+.esp-modal .esp-btn{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.6rem 1.1rem; border-radius:12px; font-weight:800;
+  transition: transform .16s ease, box-shadow .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+  user-select:none;
+}
+.esp-modal .esp-btn--primary {
+  background: #d1fae5;         /* verde claro */
+  color: #065f46;              /* texto verde oscuro */
+  border: 1px solid #a7f3d0;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 0.6rem 1.2rem;
+  transition: all 0.25s ease;
+}
+.esp-modal .esp-btn--primary:hover {
+  background: #86efac;         /* verde más saturado al hover */
+  color: #064e3b;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
+}
+.esp-modal .esp-btn--primary:active{ transform: translateY(0); }
+
+/* Estados deshabilitados heredados por :disabled */
+.esp-modal .esp-btn:disabled{
+  opacity:.6; cursor:not-allowed; box-shadow:none; transform:none;
+}

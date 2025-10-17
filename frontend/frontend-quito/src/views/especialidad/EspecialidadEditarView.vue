@@ -67,22 +67,28 @@ function onKeydown (e) {
   <Teleport to="body">
     <transition name="fade">
       <div v-if="open" class="fixed inset-0 z-50" @keydown="onKeydown">
+        <!-- fondo -->
         <div class="absolute inset-0 bg-slate-900/50" @click="onBackdrop"></div>
 
+        <!-- contenedor -->
         <div class="absolute inset-0 flex items-center justify-center p-4">
-          <div class="w-full max-w-lg rounded-2xl bg-white shadow-xl border border-slate-200">
-            <div class="px-6 py-4 border-b border-slate-100">
+          <div class="esp-modal w-full max-w-lg rounded-2xl shadow-xl border border-slate-200">
+            
+            <!-- header -->
+            <div class="esp-head px-6 py-4 border-b border-slate-100">
               <h2 class="text-lg font-semibold text-slate-900">{{ title }}</h2>
+              <p class="text-sm text-slate-600">Modifica los datos de la especialidad.</p>
             </div>
 
-            <div class="px-6 py-4 space-y-4">
+            <!-- body -->
+            <div class="esp-body px-6 py-4 space-y-4">
               <div>
                 <label class="block text-sm font-medium text-slate-700">Nombre</label>
                 <input
                   ref="nombreInput"
                   v-model="nombre"
                   type="text"
-                  class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400"
                   placeholder="Ej. Pediatría"
                 />
               </div>
@@ -92,24 +98,18 @@ function onKeydown (e) {
                 <textarea
                   v-model="descripcion"
                   rows="3"
-                  class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400"
                   placeholder="Breve descripción…"
                 ></textarea>
               </div>
             </div>
 
-            <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-2">
-              <button
-                @click="close"
-                class="rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100"
-              >
+            <!-- footer -->
+            <div class="esp-foot px-6 py-4 border-t border-slate-100 flex justify-end gap-2">
+              <button @click="close" class="btn-ghost btn-cancel">
                 Cancelar
               </button>
-              <button
-                @click="save"
-                :disabled="loading"
-                class="rounded-xl border border-emerald-600 px-4 py-2 text-sm font-medium text-emerald-700 hover:bg-emerald-600 hover:text-white disabled:opacity-50"
-              >
+              <button @click="save" :disabled="loading" class="esp-btn esp-btn--primary disabled:opacity-50">
                 Editar
               </button>
             </div>
