@@ -713,6 +713,7 @@ html, body, #app { height: 100%; margin: 0; }
   padding: 1rem 1.25rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
+  margin-top: 10px;
 }
 /* === INPUT DE BÚSQUEDA === */
 .modulo-toolbar label {
@@ -786,111 +787,6 @@ html, body, #app { height: 100%; margin: 0; }
   transform: scale(0.98);
 }
 
-/* Tabla */
-/* ===========================================================
-   🌟 NUEVA VERSIÓN DE TABLA DE MÓDULOS
-   =========================================================== */
-.modulo-tabla {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 14px;
-  background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-/* Encabezado */
-.modulo-tabla thead {
-  background: color-mix(in srgb, var(--color-accent) 18%, white);
-  color: #0f172a;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-}
-.modulo-tabla thead th {
-  padding: 0.9rem 1rem;
-  border-bottom: 2px solid color-mix(in srgb, var(--color-accent) 35%, #dbeafe);
-  text-align: left;
-  transition: background 0.2s ease;
-}
-.modulo-tabla thead th:first-child {
-  border-top-left-radius: 14px;
-}
-.modulo-tabla thead th:last-child {
-  border-top-right-radius: 14px;
-}
-/* Celdas del cuerpo */
-.modulo-tabla tbody td {
-  padding: 0.85rem 1rem;
-  color: #1e293b;
-  border-bottom: 1px solid #e2e8f0;
-  transition: all 0.15s ease;
-}
-/* Zebra + hover */
-.modulo-tabla tbody tr:nth-child(even) {
-  background: #f9fafb;
-}
-.modulo-tabla tbody tr:hover {
-  background: color-mix(in srgb, var(--color-accent) 8%, #f1f5f9);
-  transform: scale(1.002);
-  transition: transform 0.2s ease, background 0.2s ease;
-}
-/* Sombreado inferior */
-.modulo-tabla tbody tr:last-child td {
-  border-bottom: none;
-}
-/* Texto vacío */
-.modulo-empty {
-  text-align: center;
-  padding: 2.5rem;
-  font-size: 1rem;
-  color: #64748b;
-  background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
-  border-top: 1px dashed color-mix(in srgb, var(--color-accent) 30%, #e2e8f0);
-}
-/* Animación al mostrar filas */
-@keyframes fadeInRow {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.modulo-tabla tbody tr {
-  animation: fadeInRow 0.25s ease-in-out;
-}
-/* Íconos dentro de la tabla (editar/eliminar) */
-.modulo-tabla .icon-btn {
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  padding: 0.4rem 0.6rem;
-  color: var(--color-accent);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.modulo-tabla .icon-btn:hover {
-  background: color-mix(in srgb, var(--color-accent) 15%, white);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 20%, transparent);
-  transform: translateY(-1px);
-}
-/* Bordes redondeados */
-.modulo-tabla thead th:first-child,
-.modulo-tabla tbody td:first-child {
-  padding-left: 1.2rem;
-}
-.modulo-tabla thead th:last-child,
-.modulo-tabla tbody td:last-child {
-  padding-right: 1.2rem;
-}
-/* Estado vacío */
-.modulo-empty {
-  text-align: center;
-  padding: 2rem;
-  color: #64748b;
-  background: #f8fafc;
-  border-top: 1px dashed color-mix(in srgb, var(--color-accent) 30%, #e2e8f0);
-}
 /* 🩺 Médicos */
 .modulo-medicos {
   --color-accent: #06b6d4; /* cian */
@@ -903,6 +799,8 @@ html, body, #app { height: 100%; margin: 0; }
 .modulo-especialidades {
   --color-accent: #10b981; /* esmeralda */
 }
+
+
 /* ===== MÓDULO A PANTALLA COMPLETA ===== */
 .modulo-full{
   /* El contenedor del módulo debe poder estirarse */
@@ -964,7 +862,12 @@ html, body, #app { height: 100%; margin: 0; }
   box-shadow: var(--shadow-lg);
   color: var(--slate-900);
 }
-
+.modal-card,
+.modal-body,
+.modulo-medicos,
+.modulo-medicos .vgt-wrap {
+  min-width: 0;          /* clave si hay contenedores flex */
+}
 /* ---------- Header ---------- */
 .modal-head{
   padding: var(--pad-y) var(--pad-x);
@@ -1064,6 +967,186 @@ html, body, #app { height: 100%; margin: 0; }
   box-shadow: 0 6px 12px rgba(220,38,38,.12);
 }
 
+/* =======================================================
+   TABLA — Módulo Médicos (VueGoodTable)
+   Tema claro, acento azul-cian y contraste mejorado
+   ======================================================= */
+
+/* ---------- Contenedor base ---------- */
+.modulo-medicos .vgt-wrap {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+  overflow-x: auto;      /* scroll si no cabe */
+  -webkit-overflow-scrolling: touch;
+}
+
+.modulo-medicos .vgt-table {
+  width: 100%;
+  table-layout: fixed;   /* fuerza distribución y evita "crecimiento" */
+}
+.modulo-medicos .vgt-table thead th,
+.modulo-medicos .vgt-table tbody td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* ---------- Encabezado (thead) ---------- */
+.modulo-medicos .vgt-table thead th {
+  background: linear-gradient(180deg, #b1e2eb 0%, #b1eefe 100%);
+  color: #2c525d;
+  font-weight: 800;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  padding: 0.65rem 0.8rem;
+  vertical-align: middle;
+  border-bottom: 2px solid #0e7490; /* borde inferior más oscuro */
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajuste de iconos de ordenamiento (flechas) */
+.modulo-medicos .vgt-table thead th.sorting:after,
+.modulo-medicos .vgt-table thead th.sorting-asc:after,
+.modulo-medicos .vgt-table thead th.sorting-desc:after {
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.modulo-medicos .vgt-table thead th.sorting:after {
+  border-top: 6px solid rgba(255, 255, 255, 0.6);
+}
+.modulo-medicos .vgt-table thead th.sorting-asc:after {
+  border-bottom: 6px solid #ffffff;
+  border-top: none;
+}
+.modulo-medicos .vgt-table thead th.sorting-desc:after {
+  border-top: 6px solid #ffffff;
+}
+
+/* ---------- Cuerpo ---------- */
+.modulo-medicos .vgt-table tbody td {
+  padding: 0.7rem 0.9rem;
+  font-size: 0.92rem;
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.modulo-medicos .vgt-table tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.modulo-medicos .vgt-table tbody tr:hover {
+  background: #e0f7fa; /* azul cielo muy suave */
+  transition: background 0.25s ease;
+}
+
+/* ---------- Acciones ---------- */
+.modulo-medicos .row-action {
+  border: 1px solid #bfdbfe;         /* azul claro */
+  background: #ffffff;
+  color: #2563eb;                    /* azul medio */
+  border-radius: 10px;
+  padding: 0.35rem 0.6rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.05);
+}
+
+.modulo-medicos .row-action:hover {
+  background: #dbeafe;               /* azul muy claro */
+  color: #1e40af;                    /* azul más oscuro al hover */
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15);
+}
+.modulo-medicos .row-action--danger {
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+.modulo-medicos .row-action--danger:hover {
+  background: #fee2e2;
+  color: #7f1d1d;
+}
+
+/* ---------- Estado vacío ---------- */
+.modulo-medicos .vgt-table .vgt-center-align,
+.modulo-medicos .vgt-table .vgt-left-align .vgt-text {
+  color: #475569;
+}
+.modulo-medicos .vgt-wrap__actions-footer + .vgt-table .vgt-center-align {
+  padding: 1.2rem 0.75rem;
+  border-top: 1px dashed rgba(14, 165, 233, 0.35);
+  background: #ffffff;
+}
+.table{
+  margin-top: 50px;
+}
+
+/* ---------- Footer / Paginación compacta ---------- */
+.modulo-medicos .vgt-wrap__footer {
+  background: #dff6fb;              /* tono celeste claro consistente */
+  border-top: 1px solid #a5e3f2;    /* borde más sutil */
+  padding: 0.35rem 0.75rem;         /* menos alto */
+  font-size: 0.7em;                /* 🔹 tamaño de letra reducido */
+  color: #0f172a;
+}
+.modulo-medicos .vgt-wrap__footer,
+.modulo-medicos .vgt-pagination {
+  flex-wrap: wrap;
+  row-gap: .25rem;
+}
+.modulo-medicos .vgt-table th:last-child,
+.modulo-medicos .vgt-table td:last-child {
+  width: 1%;
+  white-space: nowrap;
+}
+/* Texto "Rows per page" y paginación */
+.modulo-medicos .vgt-pagination {
+  font-size: 0.7em;                /* 🔹 igual al footer */
+  color: #334155;
+}
+
+/* Botones de paginación */
+.modulo-medicos .vgt-pagination .page-link {
+  border-radius: 6px !important;
+  border: 1px solid #bae6fd !important;
+  background: #ffffff !important;
+  color: #475569 !important;
+  padding: 0.25rem 0.55rem !important;
+  font-size: 0.7em !important;    /* 🔹 texto más pequeño */
+  transition: all 0.2s ease;
+}
+.modulo-medicos .vgt-pagination .page-link:hover {
+  background: #e0f2fe !important;
+  border-color: #38bdf8 !important;
+}
+.modulo-medicos .vgt-pagination .active .page-link {
+  background: #06b6d4 !important;
+  border-color: #06b6d4 !important;
+  color: #ffffff !important;
+}
+
+
+/* ---------- Scroll horizontal elegante ---------- */
+.modulo-medicos .vgt-wrap {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+.modulo-medicos .vgt-wrap::-webkit-scrollbar {
+  height: 8px;
+}
+.modulo-medicos .vgt-wrap::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+.modulo-medicos .vgt-wrap::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
 /* ---------- Micro-ajustes de densidad ---------- */
 @media (min-width: 1024px){
   .modal-body .grid{ column-gap:1.25rem; row-gap:1rem; }
@@ -1146,102 +1229,112 @@ html, body, #app { height: 100%; margin: 0; }
 /* =======================================================
    TABLA — versión compacta y elegante para Especialidades
    ======================================================= */
-
-.modulo-tabla-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 14px;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
-  overflow: hidden;
+.modulo-tabla-card{
+  border:1px solid #e5e7eb;
+  border-radius:16px;
+  background:#fff;
+  box-shadow: 0 14px 38px rgba(2,6,23,.06);
+  overflow:hidden;
+  margin-top: 50px;
 }
 
-/* Encabezados */
-.modulo-tabla-card .vgt-table thead th {
-  background: linear-gradient(180deg, #f9fafb 0%, #f1f5f9 100%);
-  color: #0f172a;
-  font-weight: 700;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
-  padding: 0.6rem 0.8rem;
-  border-bottom: 2px dotted rgba(16, 185, 129, 0.4); /* línea punteada esmeralda */
-  vertical-align: middle;
+/* ---------- Cabecera compacta ---------- */
+.modulo-tabla-card .vgt-table thead th{
+  background: linear-gradient(180deg, #c0e6cf 0%, #aef8c6 100%);
+  color:#0f172a;
+  font-weight:800;
+  font-size:.9rem;             /* más pequeña */
+  padding:.7rem .9rem;         /* menos alta */
+  border-bottom:1px solid #d1fae5; /* línea esmeralda clara */
+}
+.modulo-tabla-card .vgt-table thead th .sort-icon{
+  color:#10b981 !important;    /* icono de ordenación esmeralda */
+  opacity:.9;
 }
 
-/* Filas del cuerpo */
-.modulo-tabla-card .vgt-table tbody td {
-  padding: 0.7rem 0.9rem;
-  font-size: 0.9rem;
-  color: #334155;
-  border-bottom: 1px solid #f1f5f9;
+/* ---------- Celdas / filas ---------- */
+.modulo-tabla-card .vgt-table tbody td{
+  padding:.85rem .95rem;
+  color:#334155;
+  border-color:#eef2f7;
+}
+.modulo-tabla-card .vgt-table tbody tr:nth-child(even){
+  background:#fbfdfc;          /* zebra muy sutil */
+}
+.modulo-tabla-card .vgt-table tbody tr:hover{
+  background:#ecfdf5;          /* hover esmeralda 50 */
 }
 
-/* Rayado suave */
-.modulo-tabla-card .vgt-table tbody tr:nth-child(even) {
-  background: #fcfdfc;
+/* ---------- Estado vacío ---------- */
+.modulo-tabla-card .modulo-empty{
+  margin:.75rem;
+  padding:1.1rem;
+  border:2px dashed #a7f3d0;
+  border-radius:12px;
+  color:#64748b;
+  background:#ffffff;
+  text-align:center;
 }
 
-/* Hover con acento verde suave */
-.modulo-tabla-card .vgt-table tbody tr:hover {
-  background: #f0fdf4;
-  transition: background 0.25s ease;
+/* ---------- Botones de acción por fila ---------- */
+.modulo-tabla-card .row-action{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:36px; height:36px;
+  border-radius:10px;
+  border:1px solid #d1fae5;    /* esmeralda claro */
+  background:#ffffff;
+  color:#059669;               /* esmeralda 600 */
+  transition:all .2s ease;
+}
+.modulo-tabla-card .row-action:hover{
+  background:#ecfdf5;
+  box-shadow:0 6px 12px rgba(16,185,129,.12);
+}
+.modulo-tabla-card .row-action--danger{
+  border-color:#fecaca;
+  color:#dc2626;
+}
+.modulo-tabla-card .row-action--danger:hover{
+  background:#fff1f2;
+  box-shadow:0 6px 12px rgba(220,38,38,.12);
 }
 
-/* Última fila sin borde */
-.modulo-tabla-card .vgt-table tbody tr:last-child td {
-  border-bottom: none;
+/* ---------- Footer / paginación compacto ---------- */
+.modulo-tabla-card .vgt-wrap__footer{
+  background: linear-gradient(180deg, #c0e6cf 0%, #aef8c6 100%);
+  border-top:1px solid #d1fae5;
+  padding:.45rem .75rem;               /* menos alto */
+  font-size:0.7em;                    /* tipografía menor */
+  color:#0f172a;
 }
 
-/* Estado vacío */
-.modulo-empty {
-  text-align: center;
-  color: #475569;
-  padding: 1.2rem;
-  font-size: 0.9rem;
-  background: #ffffff;
-  border-top: 1px dashed rgba(16, 185, 129, 0.35);
+/* Controles de paginación */
+.modulo-tabla-card .vgt-pagination{ font-size:.82rem; color:#334155; }
+.modulo-tabla-card .vgt-pagination .page-link{
+  border-radius:8px !important;
+  border:1px solid #d1fae5 !important;
+  background:#fff !important;
+  color:#0f172a !important;
+  padding:.25rem .55rem !important;
+  font-size:0.7em !important;
+  transition:all .2s ease;
+}
+.modulo-tabla-card .vgt-pagination .page-link:hover{
+  background:#ecfdf5 !important;
+  border-color:#34d399 !important;
+  color:#065f46 !important;
+}
+.modulo-tabla-card .vgt-pagination .active .page-link{
+  background:#10b981 !important;
+  border-color:#10b981 !important;
+  color:#fff !important;
 }
 
-/* Footer (paginación) */
-.modulo-tabla-card .vgt-wrap__footer {
-  background: #fafafa;
-  border-top: 1px solid #e2e8f0;
-  padding: 0.4rem 0.8rem;
+/* ---------- Ajustes del contenedor VueGoodTable ---------- */
+.modulo-tabla-card .vgt-table{
+  border:0; border-radius:0; box-shadow:none;
 }
-
-.modulo-tabla-card .vgt-pagination {
-  font-size: 0.85rem;
-}
-.modulo-tabla-card .vgt-pagination .page-link {
-  border-radius: 8px !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #475569 !important;
-  padding: 0.3rem 0.6rem !important;
-}
-.modulo-tabla-card .vgt-pagination .active .page-link {
-  background: #10b981 !important;
-  border-color: #10b981 !important;
-  color: #fff !important;
-}
-
-/* Acciones por fila (botones Editar / Eliminar) */
-.row-action {
-  border: 1px solid #e5e7eb;
-  background: #fff;
-  color: #334155;
-  border-radius: 10px;
-  padding: 0.35rem 0.6rem;
-  transition: all 0.2s ease;
-}
-.row-action:hover {
-  background: #f8fafc;
-  transform: translateY(-1px);
-}
-.row-action--danger {
-  color: #b91c1c;
-  border-color: #fecaca;
-}
-.row-action--danger:hover {
-  background: #fee2e2;
-  color: #7f1d1d;
+.modulo-tabla-card .vgt-fixed-header, 
+.modulo-tabla-card .vgt-responsive{
+  background:#fff;
 }

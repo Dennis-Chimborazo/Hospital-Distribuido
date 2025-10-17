@@ -175,8 +175,6 @@ const paginationOptions = {
     <div class="modulo-toolbar">
       <!-- Búsqueda -->
       <label class="relative w-full sm:max-w-md" aria-label="Buscar especialidad">
-        <MagnifyingGlassIcon
-          class="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
         <input
           type="search"
           v-model="nombre"
@@ -185,12 +183,12 @@ const paginationOptions = {
 
       <!-- Botones -->
       <div class="flex flex-wrap gap-2">
-        <button class="modulo-btn ghost">
+        <button @click="buscar" class="modulo-btn ghost">
           <MagnifyingGlassIcon class="h-5 w-5" />
           Buscar
         </button>
 
-        <button @click="abrirCrear" class="modulo-btn primary-emerald">
+        <button @click="agregar" class="modulo-btn primary-emerald">
           <PlusIcon class="h-5 w-5" />
           Nueva especialidad
         </button>

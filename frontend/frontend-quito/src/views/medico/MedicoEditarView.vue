@@ -270,106 +270,105 @@ function onKeydown(e) {
 
         <!-- contenedor -->
         <div class="absolute inset-0 flex items-center justify-center p-4">
-          <div class="w-full max-w-3xl rounded-2xl bg-white shadow-xl border border-slate-200">
-            <!-- header -->
-            <div class="px-6 py-4 border-b border-slate-100">
-              <h2 class="text-lg font-semibold text-slate-900">{{ title }}</h2>
-              <p class="text-sm text-slate-600">Actualiza los datos del médico.</p>
+          <!-- 🔹 Card con los estilos del modal de crear -->
+          <div class="modal-card w-full max-w-3xl">
+            <!-- header estilizado -->
+            <div class="modal-head">
+              <h2 class="text-lg">{{ title }}</h2>
+              <p class="text-sm">Actualiza los datos del médico.</p>
             </div>
 
-            <!-- body -->
-            <div class="px-6 py-6 space-y-6 max-h-[70vh] overflow-auto">
+            <!-- body estilizado -->
+            <div class="modal-body space-y-6">
               <!-- Datos personales -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label class="block text-sm font-medium text-slate-700">Nombres</label>
-                  <input ref="primerInput" v-model="form.nombres" type="text" required
-                    class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:ring-2 focus:ring-cyan-500" />
+                  <label class="block">Nombres</label>
+                  <input ref="primerInput" v-model="form.nombres" type="text" required />
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-slate-700">Apellidos</label>
-                  <input v-model="form.apellidos" type="text" required
-                    class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:ring-2 focus:ring-cyan-500" />
+                  <label class="block">Apellidos</label>
+                  <input v-model="form.apellidos" type="text" required />
                 </div>
               </div>
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label class="block text-sm font-medium text-slate-700">Identificación</label>
-                  <input v-model="form.identificacion" type="text" required
-                    class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:ring-2 focus:ring-cyan-500" />
+                  <label class="block">Identificación</label>
+                  <input v-model="form.identificacion" type="text" required />
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-slate-700">Fecha de nacimiento</label>
-                  <input v-model="form.fecha_nacimiento" type="date" required
-                    class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:ring-2 focus:ring-cyan-500" />
+                  <label class="block">Fecha de nacimiento</label>
+                  <input v-model="form.fecha_nacimiento" type="date" required />
                 </div>
               </div>
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label class="block text-sm font-medium text-slate-700">Sexo</label>
-                  <select v-model="form.sexo" required
-                    class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:ring-2 focus:ring-cyan-500">
+                  <label class="block">Sexo</label>
+                  <select v-model="form.sexo" required>
                     <option value="">Seleccione</option>
                     <option value="M">Masculino</option>
                     <option value="F">Femenino</option>
                   </select>
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-slate-700">Teléfono</label>
-                  <input v-model="form.telefono" type="tel"
-                    class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:ring-2 focus:ring-cyan-500" />
+                  <label class="block">Teléfono</label>
+                  <input v-model="form.telefono" type="tel" />
                 </div>
               </div>
 
               <div>
-                <label class="block text-sm font-medium text-slate-700">Email</label>
-                <input v-model="form.email" type="email" required
-                  class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:ring-2 focus:ring-cyan-500" />
+                <label class="block">Email</label>
+                <input v-model="form.email" type="email" required />
               </div>
 
               <div>
-                <label class="block text-sm font-medium text-slate-700">Dirección</label>
-                <textarea v-model="form.direccion" required rows="2"
-                  class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:ring-2 focus:ring-cyan-500"></textarea>
+                <label class="block">Dirección</label>
+                <textarea v-model="form.direccion" required rows="2"></textarea>
               </div>
 
               <!-- Datos del médico -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="space-y-3">
-                  <label class="block text-sm font-medium">Sede</label>
+                  <label class="block">Sede</label>
                   <VueSelect v-model="sedeSelec" :options="opcionesSede" placeholder="Seleccione una sede..." />
 
-                  <label class="block text-sm font-medium">Consultorio</label>
-                  <VueSelect v-model="consultorioSelec" :options="opcionesConsultorio"
-                    placeholder="Seleccione un consultorio..." :disabled="!sedeSelec" />
+                  <label class="block">Consultorio</label>
+                  <VueSelect
+                    v-model="consultorioSelec"
+                    :options="opcionesConsultorio"
+                    placeholder="Seleccione un consultorio..."
+                    :disabled="!sedeSelec"
+                  />
 
-                  <label class="block text-sm font-medium">Especialidad</label>
-                  <VueSelect v-model="especialidadSelec" :options="opcionesEspecialidad"
-                    placeholder="Seleccione una especialidad..." :disabled="!sedeSelec" />
+                  <label class="block">Especialidad</label>
+                  <VueSelect
+                    v-model="especialidadSelec"
+                    :options="opcionesEspecialidad"
+                    placeholder="Seleccione una especialidad..."
+                    :disabled="!sedeSelec"
+                  />
                 </div>
 
                 <div>
-                  <label class="block text-sm font-medium text-slate-700">Horario</label>
-                  <input v-model="form.horario" type="text" placeholder="Ej: Lun-Vie 08:00-16:00"
-                    class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:ring-2 focus:ring-cyan-500" />
+                  <label class="block">Horario</label>
+                  <input v-model="form.horario" type="text" placeholder="Ej: Lun-Vie 08:00-16:00" />
                 </div>
               </div>
             </div>
 
-            <!-- footer -->
-            <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-2">
-              <button @click="close"
-                class="rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100">
-                Cancelar
-              </button>
+            <!-- footer estilizado -->
+            <div class="modal-foot">
+              <button @click="close" class="btn-ghost btn-cancel">Cancelar</button>
               <button
-  @click="save"
-  :disabled="loading || !hayCambios"
-  class="rounded-xl border border-emerald-600 px-4 py-2 text-sm font-medium text-emerald-700 hover:bg-emerald-600 hover:text-white disabled:opacity-50">
-  Guardar cambios
-</button>
+                @click="save"
+                :disabled="loading || !hayCambios"
+                class="btn-ghost"
+                style="border-color: var(--ok-500); color: var(--ok-600);"
+              >
+                Guardar cambios
+              </button>
             </div>
           </div>
         </div>

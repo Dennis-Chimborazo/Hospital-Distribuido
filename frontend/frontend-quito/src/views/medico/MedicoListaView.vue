@@ -218,8 +218,6 @@ const paginationOptions = {
     <div class="modulo-toolbar">
       <!-- ====== Input de búsqueda ====== -->
       <label class="relative w-full sm:max-w-md" aria-label="Buscar médico">
-        <MagnifyingGlassIcon
-          class="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
         <!-- input dentro de .modulo-toolbar usa su propio estilo -->
         <input type="search" v-model="nombre" placeholder="Buscar por nombre, cédula, especialidad…" />
       </label>
@@ -248,6 +246,7 @@ const paginationOptions = {
     </div>
 
     <!-- ================= TABLA ================= -->
+     <div class="table">
     <VueGoodTable :columns="columns" :rows="filtrados" :search-options="{ enabled: false }"
       :pagination-options="paginationOptions" styleClass="vgt-table condensed"
       class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
@@ -281,6 +280,7 @@ const paginationOptions = {
         <div class="py-8 text-center text-slate-500">No se encontraron médicos.</div>
       </template>
     </VueGoodTable>
+    </div>
   </section>
 
   <!-- ================= MODALES ================= -->
