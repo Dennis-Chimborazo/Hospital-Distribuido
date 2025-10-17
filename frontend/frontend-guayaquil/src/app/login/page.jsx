@@ -29,13 +29,12 @@ export default function LoginPage() {
 
     try {
       const response = await ApiService.login({ user, password, remember });
-      // si tu servicio devuelve token/payload, podrías guardarlo aquí
-
-      if (response) {
+      // Si tu API devuelve un mensaje que representa la ruta:
+      if (response?.message) {
+        // IMPORTANTE: usar backticks para template string
         router.push(`/${response.message.toLowerCase()}`);
       }
     } catch (err) {
-      // Intenta leer mensaje del backend si existe
       const msg =
         err?.response?.data?.error ||
         err?.response?.data?.message ||
@@ -49,7 +48,9 @@ export default function LoginPage() {
   }
 
   return (
-    <section className={`${styles.landing} mx-auto max-w-6xl px-4 py-12 lg:py-20 grid lg:grid-cols-2 gap-10 items-center`}>
+    <section
+      className={`${styles.landing} mx-auto max-w-6xl px-4 py-12 lg:py-20 grid lg:grid-cols-2 gap-10 items-center`}
+    >
       {/* Columna izquierda (copy) */}
       <div className="space-y-6">
         <div className="flex items-center gap-3">
@@ -75,7 +76,11 @@ export default function LoginPage() {
       </div>
 
       {/* Columna derecha (card) */}
-      <div className={`${styles.card} justify-self-center w-full max-w-lg` } role="region" aria-labelledby="login-title">
+      <div
+        className={`${styles.card} justify-self-center w-full max-w-lg`}
+        role="region"
+        aria-labelledby="login-title"
+      >
         <form onSubmit={onSubmit} className="space-y-5" noValidate>
           <div className="text-center">
             <h3 id="login-title" className="text-xl font-semibold text-black">Ingresar</h3>
@@ -136,7 +141,7 @@ export default function LoginPage() {
                 aria-label={show ? 'Ocultar contraseña' : 'Mostrar contraseña'}
                 tabIndex={-1}
               >
-                {show ? '🙈' : '👁️'}
+                {show ? '🙈' : '👁'}
               </button>
             </div>
           </div>
@@ -167,5 +172,4 @@ export default function LoginPage() {
       </div>
     </section>
   );
-
 }

@@ -24,25 +24,21 @@ export default function RootLayout({ children }) {
         </main>
 
         {/* Footer fijo alineado con el sidebar (forma de L) */}
-        <footer
-          className="
-            fixed bottom-0 right-0 left-[var(--sbw)] z-40 h-[var(--footer-h)]
-            border-t border-teal-900/20 dark:border-teal-300/15
-            bg-gradient-to-r from-[#0e3a4d] via-[#0b3041] to-[#0e3a4d]
-            text-teal-100 shadow-[0_-8px_24px_rgba(0,0,0,0.18)]
-          "
-        >
-          <div className="h-full px-4 max-w-none w-full flex items-center justify-between text-xs sm:text-sm">
-            <span className="font-medium">
-              © {new Date().getFullYear()} Nuevo Amanecer. Todos los derechos reservados.
-            </span>
-            <nav className="flex items-center gap-6">
-              <a className="hover:text-teal-300 transition-colors" href="#">Términos</a>
-              <a className="hover:text-teal-300 transition-colors" href="#">Privacidad</a>
-              <a className="hover:text-teal-300 transition-colors" href="#">Soporte</a>
-            </nav>
-          </div>
-        </footer>
+       <footer className="app-footer">
+  <div className="app-footer__inner">
+    <span>
+      © {new Date().getFullYear()} <strong style={{color:'#5fe7db'}}>Hospital Nuevo Amanecer</strong>. Todos los derechos reservados.
+    </span>
+
+    <nav className="app-footer__links">
+      <a href="#">Términos</a>
+      <a href="#">Privacidad</a>
+      <a href="#">Soporte</a>
+    </nav>
+  </div>
+</footer>
+
+
       </body>
     </html>
   );

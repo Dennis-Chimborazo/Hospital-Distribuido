@@ -15,6 +15,7 @@ import Select from 'react-select';
 import { FiEdit2, FiX, FiCheckSquare } from 'react-icons/fi';
 import { confirm } from '@/components/confirm';
 import { useNotify } from '@/components/useNotify';
+import './Citas.css';
 
 /* =======================
    Helpers de mapeo
@@ -347,33 +348,34 @@ export default function CitasSecretaria() {
        Render
     ======================= */
     return (
-        <section className="space-y-6">
-            <header className="space-y-1">
-                <h1 className="text-2xl font-semibold">Citas pendientes</h1>
-                <p className="text-neutral-600">Gestiona y finaliza las citas del día.</p>
+        <section className="citas-shell">
+            <div className="citas-card">
+            <header className="citas-header">
+                <h1 className="citas-title">Citas pendientes</h1>
+                <p className="citas-sub">Gestiona y finaliza las citas del día.</p>
             </header>
 
             {/* Filtros */}
-            <div className="flex flex-col md:flex-row md:items-center gap-3">
+            <div className="citas-toolbar">
                 {/* Búsqueda */}
-                <div className="flex-1 flex items-center gap-2">
+                <div className="citas-search">
                     <input
                         value={q}
                         onChange={e => setQ(e.target.value)}
                         placeholder="Buscar por paciente, motivo, CI..."
-                        className="w-full rounded-xl border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500"
+                        className="citas-input"
                     />
                     <button
                         type="button"
                         onClick={handleBuscar}
-                        className="h-10 rounded-xl px-4 border bg-blue-600 text-white border-blue-600 hover:brightness-105"
+                        className="btn btn-primary"
                     >
                         Buscar
                     </button>
                 </div>
 
                 {/* Especialidad */}
-                <div className="w-64">
+                <div className="citas-select">
                     <Select
                         classNamePrefix="rs"
                         options={especialidadesOpt}
@@ -387,7 +389,7 @@ export default function CitasSecretaria() {
                 {/* Crear cita */}
                 <button
                     onClick={onOpenModal}
-                    className="h-10 rounded-xl px-4 py-2 bg-emerald-600 text-white hover:bg-emerald-700 transition font-medium text-sm md:text-base"
+                    className="btn btn-success"
                 >
                     + Agregar Cita
                 </button>
@@ -401,7 +403,7 @@ export default function CitasSecretaria() {
             )}
 
             {/* Tabla */}
-            <div className="rounded-2xl border border-neutral-200 overflow-hidden">
+            <div className="citas-table">
                 <DataTable
                     title={
                         <div className="text-base font-semibold">
@@ -451,6 +453,7 @@ export default function CitasSecretaria() {
                 loading={false}
                 cita={citaAFinalizar}
             />
+            </div>
         </section>
     );
 }

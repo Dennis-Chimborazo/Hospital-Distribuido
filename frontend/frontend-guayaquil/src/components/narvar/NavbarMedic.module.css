@@ -10,11 +10,15 @@
 
   --text:#eaf4f4;
   --text-dim:#a9c2c2;
+  --sbw: 280px;     /* ancho sidebar */
+  --footer-h: 64px; /* altura del footer real */
+
 }
+
 
 /* ===== Sidebar oscuro con degradado ===== */
 .sidebar{
-  height: 100dvh;
+    height: calc(100dvh - var(--footer-h));  /* antes: 100dvh */
   width: 280px;
   background: linear-gradient(180deg, #0b2430 0%, #103447 60%, #0b2f3f 100%);
   color: #eaf4f4;
@@ -28,6 +32,8 @@
   overflow-y: auto;
   z-index: 5;               /* por encima del main solo en su columna */
   box-shadow: 6px 0 20px rgba(0,0,0,.25);
+  text-decoration: none;           /* 👈 sin subrayado */
+  color: var(--text);
 }
 
 /* ===== Header ===== */
@@ -58,33 +64,55 @@
 }
 
 /* ===== Nav list ===== */
-.navList{ display: flex; flex-direction: column; gap: 8px; }
-
-.navItem{
-  display: flex; align-items: center; gap: 10px;
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   padding: 10px 12px;
   border-radius: 14px;
-  background: rgba(33,183,165,0.22);
-  border-color: rgba(33,183,165,0.38);
+  background: rgba(33,183,165,0.18);
+  border: 1px solid rgba(33,183,165,0.32);
   color: var(--text);
-  transition: transform .15s ease, background .15s ease, border-color .15s ease;
-  box-shadow: 0 2px 6px rgba(0,0,0,.25) inset;
+  box-shadow: 0 2px 6px rgba(0,0,0,.20) inset;
+  text-decoration: none;           /* 👈 redundante por si algún reset pisa */
 }
-.navItem:hover{
-  background: rgba(33, 183, 165, 0.25);
-  border-color: rgba(33,183,165,.35);
+
+/* Ícono lucide visible y del tamaño correcto */
+.navItem :global(svg),
+.icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2.2;                /* grosor visible */
+  color: var(--teal-400);           /* color acorde al tema */
+  flex-shrink: 0;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.navItem:hover .icon {
+  color: var(--teal-500);           /* más brillante al hover */
+  transform: scale(1.05);
+}
+
+.active .icon {
+  color: #5fe7db;                   /* ícono destacado al activo */
+  filter: drop-shadow(0 0 4px rgba(95,231,219,.35));
+}
+/* Hover/activo coherentes */
+.navItem:hover {
+  background: rgba(33,183,165,0.25);
+  border-color: rgba(33,183,165,.45);
   transform: translateY(-1px);
 }
-.icon{ width: 18px; height: 18px; color: var(--teal-500); }
 
-/* Activo */
-.active{
-   background: linear-gradient(180deg, rgba(33,183,165,.3), rgba(14,134,123,.26));
-  border-color: rgba(33,183,165,.55);
+.active {
+  background: linear-gradient(180deg, rgba(33,183,165,.32), rgba(14,134,123,.26));
+  border-color: rgba(33,183,165,.60);
   color: #ecfffd;
   box-shadow: 0 6px 14px rgba(21,162,149,.25);
   font-weight: 600;
 }
+
+/* Opcional: quita viñetas/sangrías si algún reset las reactivó */
 
 /* Divider */
 .divider{ height: 1px; background: rgba(255,255,255,.08); margin: 12px 6px; }
@@ -121,3 +149,14 @@
   .navList{ flex-direction: row; flex-wrap: wrap; }
   .logoutBtn{ margin-top: 8px; }
 }
+
+/* Lista del menú sin viñetas ni sangría */
+.navList{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  list-style:none;   /* <- quita los puntos */
+  margin:0;          /* <- quita sangría por defecto */
+  padding:0;         /* <- quita sangría por defecto */
+}
+.navList li{ list-style:none; }
