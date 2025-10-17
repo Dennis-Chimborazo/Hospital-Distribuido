@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  mongo-primary:
+    image: mongo:7.0
+    container_name: mongo-primary
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    networks:
+      - mongo-cluster
+    command: mongod --replSet rs0 --bind_ip_all
+    volumes:
+      - mongo-primary-data:/data/db
+
+  mongo-secondary1:
+    image: mongo:7.0
+    container_name: mongo-secondary1
+    restart: unless-stopped
+    ports:
+      - "27018:27017"
+    networks:
+      - mongo-cluster
+    command: mongod --replSet rs0 --bind_ip_all
+    volumes:
+      - mongo-secondary1-data:/data/db
+
+  mongo-secondary2:
+    image: mongo:7.0
+    container_name: mongo-secondary2
+    restart: unless-stopped
+    ports:
+      - "27019:27017"
+    networks:
+      - mongo-cluster
+    command: mongod --replSet rs0 --bind_ip_all
+    volumes:
+      - mongo-secondary2-data:/data/db
+
+networks:
+  mongo-cluster:
+    driver: bridge
+
+volumes:
+  mongo-primary-data:
+  mongo-secondary1-data:
+  mongo-secondary2-data:

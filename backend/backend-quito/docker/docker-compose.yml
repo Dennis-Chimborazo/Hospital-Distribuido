@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_simple
+    restart: always
+    ports:
+      - "27017:27017" # Mapea el puerto de Docker al puerto local
+    volumes:
+      - mongo_data:/data/db # Persistencia de datos
+
+volumes:
+  mongo_data:
+    driver: local
