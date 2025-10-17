@@ -1,5 +1,6 @@
 import Paciente from './paciente.model.js';
 import { crearPersona } from '../persona/persona.controller.js';
+import Persona from '../persona/persona.model.js';
 
 export async function crearPaciente(req, res) {
 
@@ -20,7 +21,7 @@ export async function crearPaciente(req, res) {
 
     await paciente.save();
 
-    return  res.json({ success: true, paciente:paciente });
+    return res.json({ success: true, paciente: paciente });
 
   } catch (error) {
     if (error.code === 11000) {
@@ -46,14 +47,33 @@ export async function listarPacientes(req, res) {
 }
 
 export async function buscarPaciente(req, res) {
-  const idParam = req.params.id;
+  const cedula = String((req.params.id ?? req.query.cedula ?? '')).trim();
 
   try {
-    const paciente = await Paciente.findOne({ _id: idParam })
-    return res.json({ paciente: paciente });
+    // 1) Buscar la Persona por cédula
+    const persona = await Persona.findOne({ identificacion: cedula })
+      .select('nombres apellidos identificacion')
+      .lean();
+
+    if (!persona) {
+      return res.status(404).json({ message: 'No existe una persona con esa cédula.' });
+    }
+
+    // 2) Buscar el Paciente que referencia a esa Persona
+    const paciente = await Paciente.findOne({ persona: persona._id })
+      .select('-__v -updatedAt -createdAt') // opcional
+      .lean();
+
+    if (!paciente) {
+      return res.status(404).json({ message: 'Persona encontrada, pero no tiene registro de paciente.' });
+    }
+
+    // Responder unificado (paciente + persona poblada manualmente)
+    console.log(paciente);
+    return res.json({ paciente: { ...paciente, persona } });
   } catch (error) {
-    console.error("Error al buscar paciente por ID:", error);
-    return null;
+    console.error('Error al buscar paciente por cédula:', error);
+    return res.status(500).json({ error: 'Error del servidor al buscar paciente.' });
   }
 }
 

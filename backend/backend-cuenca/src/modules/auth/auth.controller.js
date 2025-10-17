@@ -22,9 +22,16 @@ export const login = async (req, res) => {
             return res.status(400).json({ error: "Contraseña incorrecta" });
         }
         const rol = await Rol.findById(user.rol);
-        const token = await generateToken({ id: user._id });
-        res.cookie('token', token);
-        return res.json({ mesagge: rol.nombre });
+        const token = await generateToken({ id: user.persona });
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: "lax",
+            path: "/",
+        });
+
+        return res.json({ message: rol.nombre });
+
     } catch (error) {
         console.error(error);
         return res.status(500).send('Error del servidor');
