@@ -42,14 +42,12 @@ const isActive = (name) => computed(() => route.name === name)
         </button>
       </nav>
     </aside>
+    
 
     <!-- CONTENIDO -->
     <main class="admin-main">
       <section class="panel">
-        <div class="panel-head">
-          <h2 class="panel-title">{{ route.meta?.title || 'Administración' }}</h2>
-          <p class="panel-sub">{{ route.meta?.subtitle || 'Gestione los recursos de la institución.' }}</p>
-        </div>
+        
         <div class="panel-body">
           <RouterView />
         </div>

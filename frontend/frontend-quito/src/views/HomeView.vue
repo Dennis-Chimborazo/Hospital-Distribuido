@@ -35,6 +35,7 @@ const branches = [
 </script>
 
 <template>
+  <div class="container">
   <!-- NAVBAR oscuro -->
   <header class="navbar-dark">
     <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -168,6 +169,8 @@ const branches = [
         </article>
       </div>
     </div>
+    
+    
   </section>
 
   <!-- SERVICIOS -->
@@ -204,5 +207,5 @@ const branches = [
       </div>
     </div>
   </section>
-
+</div>
 </template>

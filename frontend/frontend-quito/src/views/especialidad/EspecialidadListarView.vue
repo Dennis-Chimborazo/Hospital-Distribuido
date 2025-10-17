@@ -18,17 +18,17 @@ const openEditar = ref(false)
 const itemSeleccionado = ref(null)
 
 // --------- helpers ----------
-function agregar () {
+function agregar() {
   openModalAgregar.value = true
 }
 
 // Si en tu template llamas a "buscar", define algo aunque no haga nada
-function buscar () {
+function buscar() {
   // El filtro ya es reactivo. Dejar vacío evita errores.
 }
 
 // Si quieres mantener el botón "Actualizar" pero sin pedir al backend:
-function actualizar () {
+function actualizar() {
   // No hacemos fetch; podría, por ejemplo, limpiar el filtro:
   // nombre.value = ''
 }
@@ -89,12 +89,12 @@ const filtradas = computed(() => {
 })
 
 // --------- UPDATE (optimista) ----------
-async function editar (item) {
+async function editar(item) {
   itemSeleccionado.value = { ...item } // editar sobre una copia
   openEditar.value = true
 }
 
-async function actualizarEspecialidad (payload) {
+async function actualizarEspecialidad(payload) {
   // payload: { id | _id, nombre, descripcion }
   const id = payload.id ?? payload._id // acepta ambos
   if (!(await confirm({ type: 'edit', text: '¿Guardar los cambios realizados?' }))) return
@@ -130,7 +130,7 @@ async function actualizarEspecialidad (payload) {
 }
 
 // --------- DELETE (optimista) ----------
-async function eliminar (item) {
+async function eliminar(item) {
   if (!(await confirm({ type: 'delete', text: `Se eliminará la especialidad "${item.nombre}".` }))) return
 
   // 1) Optimista: quita de la lista
@@ -164,76 +164,82 @@ const paginationOptions = {
 
 
 <template>
-  <section class="p-4 md:p-6">
-    <!-- Buscador -->
-    <div class="mb-4 flex flex-col sm:flex-row gap-3 sm:items-center">
-      <input type="text" v-model="nombre" @keyup.enter="buscar" placeholder="Buscar especialidad…"
-        class="w-full sm:max-w-md rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400"
-        aria-label="Buscar especialidad" />
+  <section class="modulo-panel modulo-full modulo-especialidades">
+    <!-- CABECERA -->
+    <div class="modulo-header">
+      <h2>Especialidades</h2>
+      <p>Listado de especialidades registradas en el sistema.</p>
+    </div>
 
+    <!-- TOOLBAR -->
+    <div class="modulo-toolbar">
+      <!-- Búsqueda -->
+      <label class="relative w-full sm:max-w-md" aria-label="Buscar especialidad">
+        <MagnifyingGlassIcon
+          class="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
+        <input
+          type="search"
+          v-model="nombre"
+          placeholder="Buscar por nombre o descripción…" />
+      </label>
+
+      <!-- Botones -->
       <div class="flex flex-wrap gap-2">
-        <!-- Buscar -->
-        <button @click="buscar"
-          class="inline-flex items-center gap-2 rounded-xl border border-cyan-600 px-4 py-2 text-sm font-medium text-cyan-700 hover:bg-cyan-600 hover:text-white transition focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2"
-          aria-label="Buscar" title="Buscar">
+        <button class="modulo-btn ghost">
           <MagnifyingGlassIcon class="h-5 w-5" />
           Buscar
         </button>
 
-        <!-- Agregar (abre modal) -->
-        <button @click="agregar"
-          class="inline-flex items-center gap-2 rounded-xl border border-emerald-600 px-4 py-2 text-sm font-medium text-emerald-700 hover:bg-emerald-600 hover:text-white transition focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2"
-          aria-label="Agregar" title="Agregar">
+        <button @click="abrirCrear" class="modulo-btn primary-emerald">
           <PlusIcon class="h-5 w-5" />
-          Agregar
+          Nueva especialidad
         </button>
 
-        <!-- Actualizar (recarga lista) -->
-        <button @click="actualizar"
-          class="inline-flex items-center gap-2 rounded-xl border border-indigo-600 px-4 py-2 text-sm font-medium text-indigo-700 hover:bg-indigo-600 hover:text-white transition focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-          aria-label="Actualizar" title="Actualizar">
-          <ArrowPathIcon class="h-5 w-5" />
-          Actualizar
+        <button @click="fetchEspecialidades" :disabled="loading" class="modulo-btn ghost">
+          <ArrowPathIcon class="h-5 w-5 animate-spin" v-if="loading" />
+          <ArrowPathIcon class="h-5 w-5" v-else />
+          {{ loading ? 'Actualizando…' : 'Actualizar' }}
         </button>
       </div>
     </div>
 
-
-    <!-- Tabla -->
-    <VueGoodTable :columns="columns" :rows="filtradas" :search-options="{ enabled: false }"
-      :pagination-options="paginationOptions" styleClass="vgt-table condensed"
-      class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
-      <!-- Celda personalizada para 'Opciones' -->
-      <template #table-row="props">
-        <template v-if="props.column.field === 'acciones'">
-          <div class="flex justify-end gap-2">
-            <button @click="editar(props.row)"
-              class="inline-flex items-center justify-center rounded-lg border border-slate-300 px-3 py-1.5 hover:bg-slate-100 transition"
-              aria-label="Editar" title="Editar">
-              <PencilSquareIcon class="h-5 w-5" />
-              <span class="sr-only">Editar</span>
-            </button>
-            <button @click="eliminar(props.row)"
-              class="inline-flex items-center justify-center rounded-lg border border-rose-300 px-3 py-1.5 text-rose-600 hover:bg-rose-50 transition"
-              aria-label="Eliminar" title="Eliminar">
-              <TrashIcon class="h-5 w-5" />
-              <span class="sr-only">Eliminar</span>
-            </button>
-          </div>
+    <!-- TABLA -->
+    <div class="modulo-tabla-card">
+      <VueGoodTable
+        :columns="columns"
+        :rows="filtradas"
+        :search-options="{ enabled: false }"
+        :pagination-options="paginationOptions"
+        styleClass="vgt-table condensed"
+      >
+        <template #table-row="props">
+          <template v-if="props.column.field === 'acciones'">
+            <div class="flex justify-end gap-2">
+              <button @click="editar(props.row)" class="row-action" title="Editar">
+                <PencilSquareIcon class="h-5 w-5" />
+              </button>
+              <button @click="eliminar(props.row)" class="row-action row-action--danger" title="Eliminar">
+                <TrashIcon class="h-5 w-5" />
+              </button>
+            </div>
+          </template>
+          <template v-else>
+            {{ props.formattedRow[props.column.field] }}
+          </template>
         </template>
-        <template v-else>
-          {{ props.formattedRow[props.column.field] }}
-        </template>
-      </template>
 
-      <!-- Vacío -->
-      <template #emptystate>
-        <div class="py-8 text-center text-slate-500">No se encontraron especialidades.</div>
-      </template>
-    </VueGoodTable>
+        <template #emptystate>
+          <div class="modulo-empty">No se encontraron especialidades.</div>
+        </template>
+      </VueGoodTable>
+    </div>
   </section>
   <EspecialidadCrearView v-model:open="openModalAgregar" @save="crearEspecialidad" />
 
   <EspecialidadEditarView v-model:open="openEditar" :item="itemSeleccionado" :loading="false"
     title="Editar especialidad" @save="actualizarEspecialidad" @cancel="itemSeleccionado = null" />
 </template>
+
+
+
+  

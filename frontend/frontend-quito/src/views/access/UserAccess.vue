@@ -43,6 +43,7 @@ function onSelect(sucursal) {
 </script>
 
 <template>
+  <div class="container">
   <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
     
     <!-- BOTÓN VOLVER -->
@@ -72,4 +73,5 @@ function onSelect(sucursal) {
       </div>
 
   </section>
+  </div>
 </template>

@@ -152,15 +152,15 @@ function onKeydown(e) {
 
         <!-- contenedor -->
         <div class="absolute inset-0 flex items-center justify-center p-4">
-          <div class="w-full max-w-3xl rounded-2xl bg-white shadow-xl border border-slate-200">
+          <div class="modal-card modal-medicos w-full max-w-3xl">
             <!-- header -->
-            <div class="px-6 py-4 border-b border-slate-100">
+            <div class="modal-head px-6 py-4">
               <h2 class="text-lg font-semibold text-slate-900">{{ title }}</h2>
               <p class="text-sm text-slate-600">Completa los datos del nuevo médico.</p>
             </div>
 
             <!-- body -->
-            <div class="px-6 py-6 space-y-6 max-h-[70vh] overflow-auto">
+            <div class="modal-body px-6 py-6 space-y-6 max-h-[70vh] overflow-auto">
               <!-- Datos personales -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -242,13 +242,13 @@ function onKeydown(e) {
             </div>
 
             <!-- footer -->
-            <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-2">
+            <div class="modal-foot px-6 py-4 flex justify-end gap-2">
               <button @click="close"
-                class="rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100">
+                class="btn-ghost btn-cancel">
                 Cancelar
               </button>
               <button @click="save" :disabled="loading"
-                class="rounded-xl border border-emerald-600 px-4 py-2 text-sm font-medium text-emerald-700 hover:bg-emerald-600 hover:text-white disabled:opacity-50">
+                class="btn-primary disabled:opacity-50">
                 Guardar médico
               </button>
             </div>

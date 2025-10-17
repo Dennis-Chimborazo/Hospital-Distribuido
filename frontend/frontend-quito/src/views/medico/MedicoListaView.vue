@@ -44,7 +44,7 @@ async function fetchMedicos() {
   loading.value = true
   try {
     const resp = await MedicoService.listarMedicos()
-    if (resp.medicos.length===0) {
+    if (resp.medicos.length === 0) {
       notify.warning('No se encontraron médicos')
       return
     }
@@ -155,11 +155,11 @@ const columns = [
     thClass: 'px-4 py-3',
     tdClass: 'px-4 py-3 text-slate-900'
   },
-  { 
-    label: 'Identificación', 
-    field: row => row.persona?.identificacion ?? '-', 
-    thClass: 'px-4 py-3', 
-    tdClass: 'px-4 py-3' 
+  {
+    label: 'Identificación',
+    field: row => row.persona?.identificacion ?? '-',
+    thClass: 'px-4 py-3',
+    tdClass: 'px-4 py-3'
   },
   {
     label: 'Sede',
@@ -169,7 +169,7 @@ const columns = [
   },
   {
     label: 'Especialidades',
-    field: row =>  row.especialidad?.nombre ?? '-',
+    field: row => row.especialidad?.nombre ?? '-',
     thClass: 'px-4 py-3',
     tdClass: 'px-4 py-3'
   },
@@ -179,18 +179,18 @@ const columns = [
     thClass: 'px-4 py-3',
     tdClass: 'px-4 py-3'
   },
-  { 
-    label: 'Horario', 
-    field: row => row.horario ?? '-', 
-    thClass: 'px-4 py-3', 
-    tdClass: 'px-4 py-3' 
+  {
+    label: 'Horario',
+    field: row => row.horario ?? '-',
+    thClass: 'px-4 py-3',
+    tdClass: 'px-4 py-3'
   },
-  { 
-    label: 'Opciones', 
-    field: 'acciones', 
-    sortable: false, 
-    thClass: 'px-4 py-3 text-right w-40', 
-    tdClass: 'px-4 py-3 text-right' 
+  {
+    label: 'Opciones',
+    field: 'acciones',
+    sortable: false,
+    thClass: 'px-4 py-3 text-right w-40',
+    tdClass: 'px-4 py-3 text-right'
   },
 ];
 
@@ -204,41 +204,50 @@ const paginationOptions = {
 </script>
 
 <template>
-  <section class="p-4 md:p-6">
-    <!-- Buscador + acciones -->
-    <div class="mb-4 flex flex-col sm:flex-row gap-3 sm:items-center">
-      <input type="text" v-model="nombre" placeholder="Buscar médico…"
-        class="w-full sm:max-w-md rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400"
-        aria-label="Buscar médico" />
+  <section class="modulo-panel modulo-medicos modulo-full">
 
+    <!-- ================= CABECERA ================= -->
+    <!-- clase: .modulo-header -->
+    <div class="modulo-header">
+      <h2>Médicos</h2>
+      <p>Listado de médicos registrados en el sistema.</p>
+    </div>
+
+    <!-- ================= BARRA DE FILTROS / ACCIONES ================= -->
+    <!-- clase: .modulo-toolbar -->
+    <div class="modulo-toolbar">
+      <!-- ====== Input de búsqueda ====== -->
+      <label class="relative w-full sm:max-w-md" aria-label="Buscar médico">
+        <MagnifyingGlassIcon
+          class="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
+        <!-- input dentro de .modulo-toolbar usa su propio estilo -->
+        <input type="search" v-model="nombre" placeholder="Buscar por nombre, cédula, especialidad…" />
+      </label>
+
+      <!-- ====== Botones ====== -->
       <div class="flex flex-wrap gap-2">
-        <!-- Buscar (client-side; si quieres server-side, llama fetch con q) -->
-        <button
-          class="inline-flex items-center gap-2 rounded-xl border border-cyan-600 px-4 py-2 text-sm font-medium text-cyan-700 hover:bg-cyan-600 hover:text-white transition focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2"
-          aria-label="Buscar" title="Buscar">
+        <!-- clase: .modulo-btn.ghost -->
+        <button class="modulo-btn ghost">
           <MagnifyingGlassIcon class="h-5 w-5" />
           Buscar
         </button>
 
-        <!-- Agregar (abre modal) -->
-        <button @click="abrirCrear"
-          class="inline-flex items-center gap-2 rounded-xl border border-emerald-600 px-4 py-2 text-sm font-medium text-emerald-700 hover:bg-emerald-600 hover:text-white transition focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2"
-          aria-label="Agregar" title="Agregar">
+        <!-- clase: .modulo-btn.primary -->
+        <button @click="abrirCrear" class="modulo-btn primary">
           <PlusIcon class="h-5 w-5" />
           Nuevo médico
         </button>
 
-        <!-- Actualizar (refresca desde backend) -->
-        <button @click="fetchMedicos" :disabled="loading"
-          class="inline-flex items-center gap-2 rounded-xl border border-indigo-600 px-4 py-2 text-sm font-medium text-indigo-700 hover:bg-indigo-600 hover:text-white transition focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 disabled:opacity-50"
-          aria-label="Actualizar" title="Actualizar">
-          <ArrowPathIcon class="h-5 w-5" />
+        <!-- clase: .modulo-btn.ghost (puede ser info) -->
+        <button @click="fetchMedicos" :disabled="loading" class="modulo-btn ghost">
+          <ArrowPathIcon class="h-5 w-5 animate-spin" v-if="loading" />
+          <ArrowPathIcon class="h-5 w-5" v-else />
           {{ loading ? 'Actualizando…' : 'Actualizar' }}
         </button>
       </div>
     </div>
 
-    <!-- Tabla -->
+    <!-- ================= TABLA ================= -->
     <VueGoodTable :columns="columns" :rows="filtrados" :search-options="{ enabled: false }"
       :pagination-options="paginationOptions" styleClass="vgt-table condensed"
       class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
@@ -274,7 +283,7 @@ const paginationOptions = {
     </VueGoodTable>
   </section>
 
-  <!-- Modales -->
+  <!-- ================= MODALES ================= -->
   <MedicoCrearView v-model:open="openCrear" :loading="loading" title="Registrar nuevo médico" @save="crearMedico" />
 
   <MedicoEditarView v-model:open="openEditar" :item="itemSeleccionado" :loading="loading" title="Editar médico"
