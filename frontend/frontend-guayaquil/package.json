@@ -1,7 +1,8 @@
 {
-  "name": "frontend-guayaquil",
+  "name": "frontend-cuenca",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
@@ -9,15 +10,27 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@nestjs/config": "^4.0.2",
+    "axios": "^1.12.2",
+    "dotenv": "^17.2.2",
+    "lucide-react": "^0.544.0",
+    "next": "15.5.4",
     "react": "19.1.0",
+    "react-data-table-component": "^7.7.0",
     "react-dom": "19.1.0",
-    "next": "15.5.4"
+    "react-icons": "^5.5.0",
+    "react-select": "^5.10.2",
+    "react-toastify": "^11.0.5",
+    "sweetalert2": "^11.23.0",
+    "vue-toastification": "^2.0.0-rc.5"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.1.13",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
-    "@eslint/eslintrc": "^3"
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.13"
   }
 }
