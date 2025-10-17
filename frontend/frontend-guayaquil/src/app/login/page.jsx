@@ -49,11 +49,11 @@ export default function LoginPage() {
   }
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-12 lg:py-20 grid lg:grid-cols-2 gap-8 items-center">
+    <section className={`${styles.landing} mx-auto max-w-6xl px-4 py-12 lg:py-20 grid lg:grid-cols-2 gap-10 items-center`}>
       {/* Columna izquierda (copy) */}
       <div className="space-y-6">
         <div className="flex items-center gap-3">
-          <div className="size-10 rounded-xl bg-brand-600 text-white grid place-items-center font-bold shadow-sm">NA</div>
+          <div className={styles.badge}>NA</div>
           <div className="leading-tight">
             <div className="text-sm text-neutral-500">Hospital</div>
             <div className="text-base sm:text-lg font-semibold">Nuevo Amanecer</div>
@@ -65,21 +65,20 @@ export default function LoginPage() {
         </h2>
 
         <p className="text-neutral-600 max-w-prose">
-          Ingresa para gestionar citas, pacientes y paneles operativos del hospital.
+          Accede al panel operativo para gestionar citas médicas, pacientes y servicios clínicos del Hospital Nuevo Amanecer.
         </p>
 
         <ul className="text-sm text-neutral-600 list-disc pl-5 space-y-1">
-          <li>UX accesible y 100% responsive.</li>
-          <li>Arquitectura lista para rutas internas.</li>
-          <li>Preparado para SSO/2FA más adelante.</li>
+          <li>Interfaz moderna, accesible y adaptable a cualquier dispositivo.</li>
+          <li>Integración con módulos administrativos y de atención médica.</li>
         </ul>
       </div>
 
       {/* Columna derecha (card) */}
-      <div className={styles.card} role="region" aria-labelledby="login-title">
+      <div className={`${styles.card} justify-self-center w-full max-w-lg` } role="region" aria-labelledby="login-title">
         <form onSubmit={onSubmit} className="space-y-5" noValidate>
           <div className="text-center">
-            <h3 id="login-title" className="text-xl font-semibold">Ingresar</h3>
+            <h3 id="login-title" className="text-xl font-semibold text-black">Ingresar</h3>
             <p className="text-sm text-neutral-500">Nuevo Amanecer – Cuenca</p>
           </div>
 
@@ -168,4 +167,5 @@ export default function LoginPage() {
       </div>
     </section>
   );
+
 }
