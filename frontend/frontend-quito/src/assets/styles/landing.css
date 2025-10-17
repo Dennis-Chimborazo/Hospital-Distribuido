@@ -1426,3 +1426,425 @@ html, body, #app { height: 100%; margin: 0; }
 .esp-modal .esp-btn:disabled{
   opacity:.6; cursor:not-allowed; box-shadow:none; transform:none;
 }
+/* ===========================
+   SECRETARIAS — Tema violeta
+   =========================== */
+/* =========================================================
+   SECRETARIAS — Card/Tabla compacta al estilo de la captura
+   (mismos layouts y tamaños, acentos en violeta)
+   ========================================================= */
+.modulo-secretarias{
+  --vio-50:#f5f3ff;
+  --vio-100:#ede9fe;
+  --vio-200:#ddd6fe;
+  --vio-300:#c4b5fd;
+  --vio-400:#a78bfa;
+  --vio-500:#8b5cf6;
+  --vio-600:#7c3aed;
+  --slate-900:#0f172a;
+  --slate-700:#334155;
+  --slate-600:#475569;
+  --slate-300:#cbd5e1;
+  --slate-200:#e5e7eb;
+  --ring:0 0 0 3px rgba(139,92,246,.22);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--slate-300);
+  
+}
+
+/* -------- Tarjeta general -------- */
+.modulo-secretarias .rounded-2xl.border{
+  border-color:var(--slate-200) !important;
+  border-radius:20px !important;
+  box-shadow:0 24px 56px rgba(2,6,23,.06) !important;
+  overflow:hidden;
+}
+
+/* -------- Header de la tabla (estilo barra sólida) -------- */
+.modulo-secretarias .vgt-table thead th{
+  background:linear-gradient(180deg, var(--vio-300) 0%, var(--vio-200) 100%) !important;
+  color:#0a0f1f !important;
+  font-weight:900 !important;
+  font-size:.92rem !important;
+  padding:.9rem 1rem !important;
+  border-bottom:2px solid var(--vio-400) !important;
+}
+.modulo-secretarias .vgt-table thead th .sort-icon{
+  color:var(--vio-600) !important;
+}
+
+/* -------- Filas / celdas -------- */
+.modulo-secretarias .vgt-table tbody td{
+  padding:1rem 1.05rem !important;
+  color:var(--slate-700) !important;
+  border-color:#eef2f7 !important;
+}
+.modulo-secretarias .vgt-table tbody tr:nth-child(even){
+  background:#fbfbff !important;
+}
+.modulo-secretarias .vgt-table tbody tr:hover{
+  background:var(--vio-50) !important;
+}
+
+/* -------- Footer/Paginación (barra sólida) -------- */
+.modulo-secretarias .vgt-wrap__footer{
+  background:linear-gradient(180deg, var(--vio-300) 0%, var(--vio-200) 100%) !important;
+  border-top:1px solid var(--vio-400) !important;
+  padding:.65rem .9rem !important;
+  color:#0a0f1f !important;
+  font-size:.9rem !important;
+}
+.modulo-secretarias .vgt-pagination .page-link{
+  border-radius:10px !important;
+  border:1px solid var(--vio-300) !important;
+  background:#fff !important;
+  color:var(--slate-700) !important;
+  padding:.35rem .65rem !important;
+  font-size:.85rem !important;
+}
+.modulo-secretarias .vgt-pagination .page-link:hover{
+  background:var(--vio-50) !important;
+  border-color:var(--vio-500) !important;
+  color:var(--vio-600) !important;
+}
+.modulo-secretarias .vgt-pagination .active .page-link{
+  background:var(--vio-500) !important;
+  border-color:var(--vio-500) !important;
+  color:#fff !important;
+}
+
+/* -------- Buscador y botones (mapeo a violeta) -------- */
+.modulo-secretarias input[type="text"],
+.modulo-secretarias input[type="search"]{
+  background:#fff; border:1px solid var(--slate-300);
+  border-radius:14px; padding:.7rem 1rem;
+  transition:border-color .2s, box-shadow .2s;
+}
+.modulo-secretarias input[type="text"]:focus,
+.modulo-secretarias input[type="search"]:focus{
+  border-color:var(--vio-500); box-shadow:var(--ring); outline:none;
+}
+
+/* Botón Buscar (antes cian) */
+.modulo-secretarias .border-cyan-600.text-cyan-700{
+  border-color:rgba(139,92,246,.35) !important;
+  color:var(--vio-600) !important; background:#fff !important;
+}
+.modulo-secretarias .border-cyan-600.text-cyan-700:hover{
+  background:var(--vio-50) !important; transform:translateY(-1px);
+}
+
+/* Botón Nuevo (antes esmeralda) */
+.modulo-secretarias .border-emerald-600.text-emerald-700{
+  border:none !important; color:#fff !important;
+  background:linear-gradient(135deg, var(--vio-500) 0%, var(--vio-600) 75%) !important;
+  box-shadow:0 10px 18px rgba(124,58,237,.22);
+}
+.modulo-secretarias .border-emerald-600.text-emerald-700:hover{
+  filter:brightness(1.05); transform:translateY(-1px);
+}
+
+/* Botón Actualizar (antes índigo) */
+.modulo-secretarias .border-indigo-600.text-indigo-700{
+  border-color:rgba(139,92,246,.45) !important;
+  color:var(--vio-600) !important; background:#fff !important;
+}
+.modulo-secretarias .border-indigo-600.text-indigo-700:hover{
+  background:var(--vio-50) !important;
+}
+
+/* -------- Acciones por fila -------- */
+.modulo-secretarias .inline-flex.items-center.justify-center.rounded-lg{
+  border:1px solid var(--vio-200) !important;
+  background:#fff !important; color:var(--vio-600) !important;
+  transition:all .2s ease;
+}
+.modulo-secretarias .inline-flex.items-center.justify-center.rounded-lg:hover{
+  background:var(--vio-50) !important;
+  box-shadow:0 6px 12px rgba(139,92,246,.12);
+}
+/* Eliminar */
+.modulo-secretarias .text-rose-600{
+  border-color:#fecaca !important; color:#dc2626 !important;
+}
+.modulo-secretarias .text-rose-600:hover{
+  background:#fff1f2 !important;
+  box-shadow:0 6px 12px rgba(220,38,38,.12);
+}
+
+
+/* ---------- Footer / paginación compacto ---------- */
+.modulo-secretarias .vgt-wrap__footer{
+  background:linear-gradient(180deg, var(--vio-100) 0%, #fff 100%) !important;
+  border-top:1px solid var(--vio-200) !important;
+  padding:.5rem .75rem !important;
+  font-size:.82rem !important;
+  color:var(--slate-700) !important;
+}
+.modulo-secretarias .vgt-pagination .page-link{
+  border-radius:8px !important;
+  border:1px solid var(--vio-200) !important;
+  background:#fff !important;
+  color:var(--slate-700) !important;
+  padding:.28rem .6rem !important;
+  font-size:.82rem !important;
+}
+.modulo-secretarias .vgt-pagination .page-link:hover{
+  background:var(--vio-50) !important;
+  border-color:var(--vio-400) !important;
+  color:var(--vio-600) !important;
+}
+.modulo-secretarias .vgt-pagination .active .page-link{
+  background:var(--vio-500) !important;
+  border-color:var(--vio-500) !important;
+  color:#fff !important;
+}
+
+/* =========================================================
+   MODALES SECRETARIAS — Tema violeta (Crear + Editar)
+   ========================================================= */
+.modal-violeta{
+  /* Paleta */
+  --vio-50:#f5f3ff; --vio-100:#ede9fe; --vio-200:#ddd6fe; --vio-300:#c4b5fd;
+  --vio-400:#a78bfa; --vio-500:#8b5cf6; --vio-600:#7c3aed;
+  --slate-900:#0f172a; --slate-700:#334155; --slate-600:#475569;
+  --slate-500:#64748b; --slate-400:#94a3b8; --slate-300:#cbd5e1; --slate-100:#f1f5f9;
+  --ring:0 0 0 3px rgba(139,92,246,.22);
+
+  border-radius:20px;
+  overflow:hidden;               /* asegura redondeos también en el header */
+  box-shadow:0 28px 64px rgba(2,6,23,.12);
+}
+
+/* ---------- Header / Footer suaves (sin marcos duros) ---------- */
+.modal-violeta > .border-b{
+  border-top-left-radius:20px;
+  border-top-right-radius:20px;
+  border-top:0;
+  border-bottom:1px solid rgba(139,92,246,.18);
+  background:
+    radial-gradient(900px 300px at 110% -20%, rgba(139,92,246,.08) 0%, transparent 70%),
+    linear-gradient(180deg,#ffffff 0%, #fafaff 100%);
+}
+
+.modal-violeta > .border-t{
+  background: linear-gradient(180deg,#ffffff 0%, #fafaff 100%);
+  box-shadow: inset 0 1px 0 rgba(139,92,246,.14);
+}
+
+/* ---------- Secciones del formulario (sin recuadros internos) ---------- */
+.modal-violeta .form-section{
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* ---------- Etiquetas ---------- */
+.modal-violeta label{
+  color: var(--slate-700);
+  font-weight: 600;
+  font-size: .9rem;
+  letter-spacing: .1px;
+}
+.modal-violeta .label-required::after{
+  content:" *";
+  color:#ef4444;
+  font-weight:800;
+}
+
+/* ---------- Inputs / Textarea / Select nativo ---------- */
+.modal-violeta input[type="text"],
+.modal-violeta input[type="email"],
+.modal-violeta input[type="tel"],
+.modal-violeta input[type="date"],
+.modal-violeta textarea,
+.modal-violeta select{
+  border:1px solid var(--slate-300);
+  background:#fff;
+  color:var(--slate-900);
+  border-radius:12px;
+  height:44px;
+  padding:.65rem .8rem;
+  line-height:1.2;
+  transition:border-color .2s, box-shadow .2s, background .2s;
+  box-shadow:none !important;
+}
+.modal-violeta textarea{ min-height:92px; height:auto; }
+.modal-violeta input:hover,
+.modal-violeta textarea:hover,
+.modal-violeta select:hover{ border-color:#b9c3d0; }
+.modal-violeta input:focus,
+.modal-violeta textarea:focus,
+.modal-violeta select:focus{
+  border-color:var(--vio-500);
+  box-shadow:var(--ring);
+  outline:none;
+}
+
+/* Select nativo: caret consistente */
+.modal-violeta select{
+  appearance:none; -webkit-appearance:none; -moz-appearance:none;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 20 20' fill='none' stroke='%2394a3b8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 8 10 12 14 8'/></svg>");
+  background-repeat:no-repeat;
+  background-position:right .75rem center;
+  background-size:14px 14px;
+  padding-right:2.2rem;
+}
+
+/* Estados de validación opcionales */
+.modal-violeta .is-invalid{ border-color:#fca5a5 !important; box-shadow:0 0 0 3px rgba(239,68,68,.12); }
+.modal-violeta .is-valid  { border-color:#86efac !important; box-shadow:0 0 0 3px rgba(34,197,94,.12); }
+
+/* =========================================================
+   Combobox (vue3-select-component)
+   ========================================================= */
+
+/* Contenedor alineado al resto de campos */
+/* ============================
+   FIX — Combobox sin “pastilla”
+   (vue3-select-component)
+   Aplica a Crear y Editar (modal-violeta)
+   ============================ */
+
+/* 1) Oculta cualquier adorno/“leading pill” que el componente inserte */
+.modal-violeta .vsc-container .vsc-leading,
+.modal-violeta .vsc-container .vsc-control--start,
+.modal-violeta .vsc-container .vsc-chip,
+.modal-violeta .vsc-container .vsc-tag,
+.modal-violeta .vsc-container .vsc-avatar,
+.modal-violeta .vsc-container [class*="leading"],
+.modal-violeta .vsc-container [class*="prefix"],
+.modal-violeta .vsc-container [class*="affix"],
+.modal-violeta .vsc-container [class*="adorn"]{
+  display: none !important;
+  width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+/* 2) Elimina pseudo-elementos que algunos temas usan para la “cápsula” */
+.modal-violeta .vsc-container *::before,
+.modal-violeta .vsc-container *::after{
+  content: none !important;
+}
+
+/* 3) Normaliza el área de entrada del single select */
+.modal-violeta .vsc-container .vsc-single{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: .55rem .75rem !important; /* alínea con tus inputs */
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* 4) Input/placeholder planos y sin bordes internos */
+.modal-violeta .vsc-container .vsc-input,
+.modal-violeta .vsc-container .vsc-placeholder{
+  font-size: .92rem;
+  background: transparent !important;
+  color: var(--slate-900);
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* 5) Contenedor con el mismo look de los inputs del formulario */
+.modal-violeta .vsc-container{
+  border: 1px solid var(--slate-300);
+  border-radius: 12px;
+  background: #fff !important;
+  color: var(--slate-900);
+  min-height: 44px;
+  padding: 0;
+  display: flex; align-items: center;
+  transition: border-color .2s, box-shadow .2s;
+  box-shadow: none !important;
+}
+.modal-violeta .vsc-container:focus-within{
+  border-color: var(--vio-500);
+  box-shadow: var(--ring);
+}
+
+/* 6) Indicador ▼ plano y con color al foco */
+.modal-violeta .vsc-indicator{
+  color: var(--slate-500);
+  margin-right: .6rem;
+  transition: color .2s;
+}
+.modal-violeta .vsc-container:focus-within .vsc-indicator{
+  color: var(--vio-500);
+}
+
+/* 7) Menú y opciones (coherentes con el tema violeta) */
+.modal-violeta .vsc-menu{
+  border-radius: 10px !important;
+  margin-top: 4px;
+  background: #fff;
+  border: 1px solid var(--vio-100) !important;
+  box-shadow: 0 10px 20px rgba(15,23,42,.08) !important;
+}
+.modal-violeta .vsc-option{
+  padding: .5rem .7rem;
+  font-size: .92rem;
+  background: transparent !important;
+}
+.modal-violeta .vsc-option:hover{ background: var(--vio-50) !important; }
+.modal-violeta .vsc-option.is-selected{
+  background: var(--vio-100) !important;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   Botones (coherencia con el tema)
+   ========================================================= */
+.modal-violeta .btn-ghost.btn-cancel{
+  border:1px solid #fecaca !important;
+  color:#dc2626 !important;
+  background:#fff !important;
+  border-radius:14px;
+  padding:.6rem 1.1rem; font-weight:800;
+}
+.modal-violeta .btn-ghost.btn-cancel:hover{
+  background:#fff1f2 !important;
+}
+
+/* Botón principal suave en violeta */
+.modal-violeta .btn-save{
+  border:none !important;
+  color:#fff !important;
+  background:linear-gradient(135deg, var(--vio-300) 0%, var(--vio-400) 85%) !important;
+  box-shadow:0 6px 14px rgba(167,139,250,.25);
+  border-radius:14px;
+  padding:.6rem 1.1rem; font-weight:800;
+  transition:transform .15s ease, filter .15s ease, box-shadow .2s ease;
+  min-width:150px;
+}
+.modal-violeta .btn-save:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.08);
+  background:linear-gradient(135deg, var(--vio-400) 0%, var(--vio-500) 85%) !important;
+}
+.modal-violeta .btn-save:disabled{
+  opacity:.7; box-shadow:none;
+  background:linear-gradient(135deg, var(--vio-200) 0%, var(--vio-300) 85%) !important;
+  color:#f1f5f9 !important;
+}
+
+/* =========================================================
+   Scroll del body del modal
+   ========================================================= */
+.modal-violeta .max-h-\[70vh\]{
+  scrollbar-width:thin;
+  scrollbar-color: var(--vio-300) transparent;
+}
+.modal-violeta .max-h-\[70vh\]::-webkit-scrollbar{ width:10px; height:10px; }
+.modal-violeta .max-h-\[70vh\]::-webkit-scrollbar-thumb{ background:var(--vio-300); border-radius:9999px; }
+.modal-violeta .max-h-\[70vh\]::-webkit-scrollbar-track{ background:transparent; }

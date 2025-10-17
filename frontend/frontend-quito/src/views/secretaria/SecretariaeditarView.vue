@@ -216,7 +216,7 @@ function onKeydown(e) {
 
                 <!-- contenedor -->
                 <div class="absolute inset-0 flex items-center justify-center p-4">
-                    <div class="w-full max-w-2xl rounded-2xl bg-white shadow-xl border border-slate-200">
+                    <div class="w-full max-w-2xl rounded-2xl bg-white shadow-xl border border-slate-200 modal-violeta">
                         <!-- header -->
                         <div class="px-6 py-4 border-b border-slate-100">
                             <h2 class="text-lg font-semibold text-slate-900">{{ title }}</h2>
@@ -263,11 +263,11 @@ function onKeydown(e) {
                         <!-- footer -->
                         <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-2">
                             <button @click="close"
-                                class="rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100">
+                            class="btn-ghost btn-cancel">
                                 Cancelar
                             </button>
                             <button @click="save" :disabled="loading || !hayCambios"
-                                class="rounded-xl border border-emerald-600 px-4 py-2 text-sm font-medium text-emerald-700 hover:bg-emerald-600 hover:text-white disabled:opacity-50">
+                                class="btn-save disabled:opacity-50">
                                 Guardar cambios
                             </button>
                         </div>

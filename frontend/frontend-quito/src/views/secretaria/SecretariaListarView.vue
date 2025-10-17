@@ -199,9 +199,13 @@ const paginationOptions = {
 </script>
 
 <template>
-    <section class="p-4 md:p-6">
+    <section class="modulo-panel modulo-full modulo-secretarias p-4 md:p-6">
+         <div class="modulo-header">
+      <h2>Secretarias</h2>
+      <p>Listado de secretari@s registrados en el sistema.</p>
+    </div>
         <!-- Buscador + acciones -->
-        <div class="mb-4 flex flex-col sm:flex-row gap-3 sm:items-center">
+        <div class="modulo-toolbar">
             <input type="text" v-model="nombre" placeholder="Buscar secretaria…"
                 class="w-full sm:max-w-md rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400"
                 aria-label="Buscar secretaria" />
@@ -214,7 +218,7 @@ const paginationOptions = {
                     Buscar
                 </button>
 
-                <button @click="abrirCrear"
+                 <button @click="abrirCrear"
                     class="inline-flex items-center gap-2 rounded-xl border border-emerald-600 px-4 py-2 text-sm font-medium text-emerald-700 hover:bg-emerald-600 hover:text-white transition focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2"
                     aria-label="Agregar" title="Agregar">
                     <PlusIcon class="h-5 w-5" />
@@ -231,6 +235,7 @@ const paginationOptions = {
         </div>
 
         <!-- Tabla -->
+         <div class="table">
         <VueGoodTable :columns="columns" :rows="filtradas" :search-options="{ enabled: false }"
             :pagination-options="paginationOptions" styleClass="vgt-table condensed"
             class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
@@ -264,6 +269,7 @@ const paginationOptions = {
                 <div class="py-8 text-center text-slate-500">No se encontraron secretarias.</div>
             </template>
         </VueGoodTable>
+        </div>
     </section>
 
     <!-- Modales -->
