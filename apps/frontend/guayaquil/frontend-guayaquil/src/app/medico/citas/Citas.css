@@ -1,0 +1,154 @@
+/* ============================
+   Citas — Card + Toolbar + Tabla
+   Scope local para no tocar el navbar
+   ============================ */
+
+.citas-shell{
+  /* mismo navy del layout para que se funda con el fondo */
+  --navy-900:#0b2430;
+  --navy-800:#103447;
+  --teal-50:#e6fffb; --teal-100:#c7fff6;
+  --teal-400:#36c6b3; --teal-500:#21b7a5; --teal-700:#0e867b;
+  --line:#e7eef1; --ink-900:#0b2430; --ink-600:#566573;
+
+  background: var(--navy-900);
+}
+
+.citas-card{
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: 0 24px 42px rgba(2,6,23,.12), 0 3px 10px rgba(2,6,23,.06);
+  padding: 22px clamp(16px, 3vw, 28px) 26px;
+}
+
+.citas-title{
+  font-weight: 800;
+  color:#0b2430;
+  letter-spacing:.2px;
+  margin:0 0 .25rem;
+  font-size: clamp(1.3rem, 1rem + 1vw, 1.8rem);
+}
+.citas-sub{ color:#5b6b77; margin:0 0 .85rem; }
+
+/* Toolbar */
+.citas-toolbar{
+  display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+  margin-bottom: 12px;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 18px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.citas-search{
+  display:flex; align-items:center; gap:8px; flex:1 1 420px;
+}
+.citas-input{
+width: 100%;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 0.65rem 1rem 0.65rem 2.2rem;
+  font-size: 0.95rem;
+  color: #1e293b;
+  background: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+.citas-input:hover{ border-color:#cbd9df; }
+.citas-input:focus{
+  outline:none; border-color:var(--teal-500);
+  box-shadow:0 0 0 3px rgba(13,148,136,.22);
+}
+.citas-toolbar label {
+  position: relative;
+  flex: 1 1 300px;
+}
+
+.modulo-toolbar input::placeholder {
+  color: #94a3b8;
+}
+.modulo-toolbar input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 25%, transparent);
+  background: #fff;
+  outline: none;
+}
+
+.citas-btn{
+  height:44px; padding:0 14px; border-radius:14px;
+  border:1px solid transparent; cursor:pointer;
+  font-weight:800; transition:filter .15s, transform .12s;
+}
+.citas-btn:active{ transform: translateY(0); }
+.modulo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 14px;
+  padding: 0.6rem 1.1rem;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+.btn-primary{
+  color:#fff; background:linear-gradient(135deg, var(--teal-500) 0%, var(--teal-700) 85%);
+  box-shadow:0 8px 16px rgba(14,134,123,.22);
+}
+.btn-primary:hover{ filter:brightness(1.05); }
+
+.btn-success{
+  color:#fff; background:linear-gradient(135deg, #34d399 0%, #059669 85%);
+  box-shadow:0 8px 16px rgba(5,150,105,.22);
+}
+.btn-success:hover{ filter:brightness(1.05); }
+
+/* Tabla (react-data-table-component) — overrides suaves */
+.citas-table{
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 6px 14px rgba(2,6,23,.08);
+  margin-top: 50px;
+
+}
+
+/* Badges de estado */
+.badge{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:.35rem .6rem; font-size:.75rem; font-weight:700;
+  border-radius:999px; border:1px solid transparent;
+}
+.badge-dot{
+  width:8px; height:8px; border-radius:999px; background:currentColor;
+}
+
+/* icon buttons */
+.icon-btn{
+  width:36px; height:36px; display:grid; place-items:center;
+  border-radius:10px; background:#fff; border:1px solid var(--line);
+  transition: background .15s, border-color .15s, transform .12s;
+}
+.icon-btn:hover{ transform: translateY(-1px); }
+.icon-btn svg{ width:18px; height:18px; }
+
+/* colores por acción */
+.icon-blue:hover   { background:#eff6ff; border-color:#bfdbfe; }
+.icon-red:hover    { background:#fff1f2; border-color:#fecaca; }
+.icon-green:hover  { background:#ecfdf5; border-color:#bbf7d0; }
+
+/* No data */
+.citas-empty{
+  padding: 28px 0; color:#6b7b8a;
+}

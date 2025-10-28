@@ -1,0 +1,162 @@
+:root{
+  --teal-400:#36c6b3;
+  --teal-500:#21b7a5;
+  --teal-600:#14a295;
+  --teal-700:#0e867b;
+
+  --navy-900:#0b2430;
+  --navy-800:#103447;
+  --navy-700:#1a4b60;
+
+  --text:#eaf4f4;
+  --text-dim:#a9c2c2;
+  --sbw: 280px;     /* ancho sidebar */
+  --footer-h: 64px; /* altura del footer real */
+
+}
+
+
+/* ===== Sidebar oscuro con degradado ===== */
+.sidebar{
+    height: calc(100dvh - var(--footer-h));  /* antes: 100dvh */
+  width: 280px;
+  background: linear-gradient(180deg, #0b2430 0%, #103447 60%, #0b2f3f 100%);
+  color: #eaf4f4;
+  border-right: 1px solid rgba(255,255,255,.06);
+  padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: sticky; /* se queda fijo al hacer scroll */
+  top: 0;
+  overflow-y: auto;
+  z-index: 5;               /* por encima del main solo en su columna */
+  box-shadow: 6px 0 20px rgba(0,0,0,.25);
+  text-decoration: none;           /* 👈 sin subrayado */
+  color: var(--text);
+}
+
+/* ===== Header ===== */
+.header{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.logoBox{
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  font-weight: 800; color: #fff;
+  border-radius: 14px;
+  background: linear-gradient(160deg, var(--teal-500), var(--teal-700));
+  box-shadow: 0 8px 18px rgba(16,52,71,.35), inset 0 1px 0 rgba(255,255,255,.2);
+}
+.subText{ font-size: .74rem; color: var(--text-dim); }
+.title{ font-size: .95rem; font-weight: 700; color: var(--text); }
+
+/* ===== Secciones ===== */
+.sectionLabel{
+  font-size: .72rem;
+  letter-spacing: .06em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  padding: 6px 8px;
+}
+
+/* ===== Nav list ===== */
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(33,183,165,0.18);
+  border: 1px solid rgba(33,183,165,0.32);
+  color: var(--text);
+  box-shadow: 0 2px 6px rgba(0,0,0,.20) inset;
+  text-decoration: none;           /* 👈 redundante por si algún reset pisa */
+}
+
+/* Ícono lucide visible y del tamaño correcto */
+.navItem :global(svg),
+.icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2.2;                /* grosor visible */
+  color: var(--teal-400);           /* color acorde al tema */
+  flex-shrink: 0;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.navItem:hover .icon {
+  color: var(--teal-500);           /* más brillante al hover */
+  transform: scale(1.05);
+}
+
+.active .icon {
+  color: #5fe7db;                   /* ícono destacado al activo */
+  filter: drop-shadow(0 0 4px rgba(95,231,219,.35));
+}
+/* Hover/activo coherentes */
+.navItem:hover {
+  background: rgba(33,183,165,0.25);
+  border-color: rgba(33,183,165,.45);
+  transform: translateY(-1px);
+}
+
+.active {
+  background: linear-gradient(180deg, rgba(33,183,165,.32), rgba(14,134,123,.26));
+  border-color: rgba(33,183,165,.60);
+  color: #ecfffd;
+  box-shadow: 0 6px 14px rgba(21,162,149,.25);
+  font-weight: 600;
+}
+
+/* Opcional: quita viñetas/sangrías si algún reset las reactivó */
+
+/* Divider */
+.divider{ height: 1px; background: rgba(255,255,255,.08); margin: 12px 6px; }
+
+/* ===== Logout ===== */
+.logoutBtn{
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  margin-top: auto;
+  padding: 10px 12px;
+  border-radius: 14px;
+  font-weight: 700; font-size: .92rem;
+  color: #ffe3e3;
+  background: rgba(220,38,38,0.12);
+  border-color: rgba(252,165,165,.45);
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+.logoutBtn:hover{
+  background: rgba(254, 226, 226, .18);
+  border-color: rgba(252,165,165,.75);
+  transform: translateY(-1px);
+}
+
+/* Responsive: navbar horizontal en móvil */
+@media (max-width: 768px){
+  .sidebar{
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    flex-direction: column;
+    border-radius: 0;
+  }
+  .navList{ flex-direction: row; flex-wrap: wrap; }
+  .logoutBtn{ margin-top: 8px; }
+}
+
+/* Lista del menú sin viñetas ni sangría */
+.navList{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  list-style:none;   /* <- quita los puntos */
+  margin:0;          /* <- quita sangría por defecto */
+  padding:0;         /* <- quita sangría por defecto */
+}
+.navList li{ list-style:none; }

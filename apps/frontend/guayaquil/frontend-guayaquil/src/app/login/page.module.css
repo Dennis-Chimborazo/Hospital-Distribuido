@@ -1,0 +1,205 @@
+:root{
+  /* Paleta tipo Laborex */
+  --navy-900:#0b2430;    /* header oscuro */
+  --navy-800:#103447;
+  --navy-700:#1a4b60;
+
+  --teal-400:#36c6b3;
+  --teal-500:#21b7a5;    /* botón / acento */
+  --teal-600:#14a295;
+  --teal-700:#0e867b;
+
+  --bg-page:#f3fbfb;     /* fondo claro verdoso */
+  --bg-card:#ffffff;
+  --bg-input:#fbfcfc;
+
+  --border:rgba(0,0,0,.08);
+  --border-strong:rgba(0,0,0,.12);
+
+  --text:#0e1216;
+  --text-dim:#5f6b7a;
+  --ring:rgba(33,183,165,.35);
+
+  --danger:#dc2626;
+  --danger-bg:#fee2e2;
+  --danger-br:#fecaca;
+}
+
+/* ===============  Fondo y “hero” =============== */
+.landing{
+  /* puntos + franja superior navy + fondo claro */
+  background:
+    radial-gradient(9px 9px at 40px 40px, rgba(33,183,165,.10) 4px, transparent 5px) 0 0/56px 56px,
+    radial-gradient(9px 9px at 0 0, rgba(33,183,165,.06) 4px, transparent 5px) 28px 28px/56px 56px,
+    linear-gradient(180deg, rgba(11,36,48,.92) 0%, rgba(11,36,48,.78) 200px, #e9fbfa 200px);
+  background-color:#f4fbfb;
+  border-radius:28px;
+  padding:32px;
+  box-shadow:0 24px 48px rgba(11,36,48,.10);
+  position:relative;
+  overflow:hidden;
+}
+
+.heroTitle{
+  display:inline-block;
+  padding:.7rem 1.25rem;
+  border-radius:14px;
+  color:#fff;
+  font-weight:800;
+  font-size:1.8rem;
+  letter-spacing:.2px;
+  background:linear-gradient(135deg, var(--teal-500), var(--teal-700));
+  box-shadow:0 10px 24px rgba(21,162,149,.35), inset 0 1px 0 rgba(255,255,255,.22);
+}
+.heroKicker{
+  display:block;
+  margin-top:.35rem;
+  font-size:.86rem;
+  color:#cbeeed;
+}
+.landing h2{
+  color:#0d3744;
+  text-shadow:0 1px 0 rgba(255,255,255,.4);
+}
+
+/* ===============  Tarjeta / formulario =============== */
+.card{
+  background:var(--bg-card);
+  border:1px solid rgba(0,0,0,.05);
+  border-radius:22px;
+  padding:34px;
+  box-shadow:
+    0 26px 54px rgba(0,0,0,.10),
+    0 2px 6px rgba(0,0,0,.05);
+  backdrop-filter:saturate(140%) blur(6px);
+}
+
+/* Labels */
+.label{
+  display:inline-block;
+  font-size:.92rem;
+  font-weight:700;
+  color:var(--navy-800);
+}
+
+/* Inputs */
+.input{
+  width:100%;
+  height:46px;
+  padding:.85rem 1rem;
+  border-radius:12px;
+  border:1px solid rgba(0,0,0,.10);
+  background:linear-gradient(180deg, var(--bg-input), #f5f8f8);
+  color:var(--text);
+  outline:none;
+  transition:border-color .16s ease, box-shadow .16s ease, background .16s ease, transform .06s ease;
+}
+.input::placeholder{ color:var(--text-dim); }
+.input:focus{
+  border-color:var(--teal-500);
+  box-shadow:0 0 0 3px var(--ring);
+  background:#ffffff;
+}
+.input:active{ transform:scale(.998); }
+
+/* Enlaces */
+.link, .linkSm{
+  color:var(--teal-700);
+  text-decoration:none;
+}
+.link:hover, .linkSm:hover{ text-decoration:underline; }
+.linkSm{ font-size:.8rem; }
+
+/* Password eye */
+.passwordWrap{ position:relative; }
+.eyeBtn{
+  position:absolute; right:10px; top:50%; translate:0 -50%;
+  font-size:1rem; line-height:1; border:0; background:transparent; cursor:pointer; opacity:.85;
+}
+.eyeBtn:hover{ opacity:1; }
+
+/* Row between */
+.rowBetween{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:.75rem;
+}
+.checkbox{
+  display:inline-flex; align-items:center; gap:.5rem; font-size:.92rem; color:var(--text);
+}
+.checkbox input[type="checkbox"]{
+  width:1rem; height:1rem; accent-color:var(--teal-600);
+}
+
+/* Botón principal estilo “Request a Quote” */
+.btnPrimary{
+  width:100%;
+  display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
+  height:48px; padding:0 1.2rem;
+  border-radius:999px;
+  border:1px solid var(--teal-600);
+  background:linear-gradient(180deg, var(--teal-500), #159b8d);
+  color:#fff; font-weight:800; letter-spacing:.2px;
+  transition:transform .12s ease, filter .12s ease, box-shadow .12s ease;
+  box-shadow:0 12px 24px rgba(21,162,149,.25), inset 0 1px 0 rgba(255,255,255,.18);
+}
+.btnPrimary:hover{
+  filter:brightness(1.04);
+  box-shadow:0 14px 28px rgba(21,162,149,.30);
+}
+.btnPrimary:active{ transform:translateY(1px); }
+.btnPrimary:disabled{ opacity:.75; cursor:not-allowed; filter:saturate(.9); }
+
+/* Spinner */
+@keyframes spin{ to{ transform:rotate(360deg); } }
+.spinner{
+  width:16px; height:16px;
+  border:2px solid transparent;
+  border-top-color:#fff; border-right-color:#fff;
+  border-radius:999px; animation:spin .8s linear infinite;
+}
+
+/* Alert error */
+.alert{
+  display:flex; align-items:center; gap:.6rem;
+  padding:.75rem .9rem;
+  border:1px solid var(--danger-br);
+  background:var(--danger-bg);
+  color:var(--danger);
+  border-radius:12px;
+  font-size:.9rem;
+}
+.alertIcon{ width:18px; height:18px; flex:0 0 auto; fill:none; stroke:currentColor; stroke-width:2; }
+
+/* Texto legal */
+.legal{
+  font-size:.78rem; color:var(--text-dim); text-align:center;
+}
+
+/* Badge “NA” */
+.badge{
+  background:linear-gradient(160deg, var(--teal-500), var(--teal-700));
+  color:#fff; border-radius:14px;
+  width:42px; height:42px; display:grid; place-items:center; font-weight:800;
+  box-shadow:0 8px 18px rgba(16,52,71,.25);
+}
+
+/* ===============  Responsivo fino =============== */
+@media (max-width: 1024px){
+  .landing{ padding:24px; border-radius:20px; }
+  .card{ padding:26px; border-radius:18px; }
+  .heroTitle{ font-size:1.55rem; }
+}
+@media (max-width: 640px){
+  .heroTitle{ font-size:1.35rem; padding:.55rem 1rem; }
+  .landing{ background:
+    radial-gradient(9px 9px at 30px 30px, rgba(33,183,165,.10) 4px, transparent 5px) 0 0/48px 48px,
+    radial-gradient(9px 9px at 0 0, rgba(33,183,165,.06) 4px, transparent 5px) 24px 24px/48px 48px,
+    linear-gradient(180deg, rgba(11,36,48,.92) 0%, rgba(11,36,48,.78) 160px, #e9fbfa 160px);
+  }
+}
+
+/* Motion safe */
+@media (prefers-reduced-motion: reduce){
+  .btnPrimary, .input{ transition:none; }
+  .spinner{ animation:none; border:2px solid #fff; }
+}
