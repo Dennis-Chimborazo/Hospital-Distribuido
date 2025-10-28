@@ -1,0 +1,1850 @@
+/* ================== NAVBAR OSCURO ================== */
+:root{ --nav-h: 64px; }   /* h-16 = 64px */
+
+.navbar-dark{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background:#1f2937E6;        /* mismo color con ligera opacidad */
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  box-shadow: 0 4px 10px rgba(2,6,23,.12);
+  color: white;
+}
+.container{
+  background: white;
+}
+/* reset seguro */
+html, body, #app { height: 100%; margin: 0; }
+
+/* por defecto, sin espacio arriba */
+body { padding-top: 0; }
+
+/* añade espacio SOLO cuando exista el navbar fijo */
+body:has(.navbar-dark) { padding-top: var(--nav-h); }
+/* si no quieres usar :has(), mira la opción B más abajo */
+
+.navbar-dark a { color:inherit; text-decoration:none; }
+.brand-dot{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:32px; height:32px; border-radius:9999px; background:#f43f5e; color:#fff; /* rose-500 */
+}
+.nav-list{
+  display:none; align-items:center; gap:1.5rem; font-size:0.875rem; color:#e5e7eb; /* text-slate-100 */
+}
+@media (min-width:768px){ .nav-list{ display:flex; } }
+.nav-link{ position:relative; padding-bottom:2px; }
+.nav-link::after{
+  content:""; position:absolute; left:0; right:0; bottom:-3px; height:2px;
+  background:rgba(255,255,255,.4); transform:scaleX(0); transform-origin:left; transition:transform .25s ease;
+}
+.nav-link:hover::after{ transform:scaleX(1); }
+
+
+/* ================== HERO ================== */
+.hero{ position:relative; overflow:hidden; }
+.hero .container{ max-width:80rem; margin:0 auto; padding:4rem 1rem; }
+@media (min-width:640px){ .hero .container{ padding:6rem 1.5rem; } }
+
+.title{
+  font-weight:800; color:#0f172a; line-height:1.1;
+  font-size:1.875rem;
+}
+@media (min-width:640px){ .title{ font-size:2.25rem; } }
+@media (min-width:768px){ .title{ font-size:3rem; } }
+
+.lead{ margin-top:1rem; color:#475569; font-size:1rem; max-width:40rem; }
+@media (min-width:640px){ .lead{ font-size:1.125rem; } }
+
+.btn-primary{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  padding:.75rem 1.5rem; border-radius:9999px; background:#fa7389; color:#fff; font-weight:600;
+  box-shadow:0 1px 2px rgba(0,0,0,.06);
+}
+.btn-primary:hover{ background:#e11d48; }
+
+.btn-secondary{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:.75rem 1.25rem; border-radius:.75rem; border:1px solid #e2e8f0; color:#334155; background:transparent;
+}
+.btn-secondary:hover{ background:#f8fafc; }
+
+/* Imagen con borde coral claro */
+.hero-media{ position:relative; }
+.hero-media .frame{
+  border:4px solid #fecaca; border-radius:0.75rem; overflow:hidden;
+  box-shadow:0 10px 25px rgba(2,6,23,.1);
+}
+.hero-media img{ width:100%; height:330px; object-fit:cover; }
+
+/* Badge 50% */
+.discount-badge{
+  position:absolute; right:-1rem; bottom:1.5rem; width:140px; height:140px; border-radius:9999px;
+  background:#0f172a; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 10px 25px rgba(2,6,23,.35);
+}
+.discount-badge::before{
+  content:""; position:absolute; inset:-10px; border:10px solid #ef6b6b; border-radius:9999px;
+}
+.discount-badge .inner{ color:#fff; text-align:center; }
+.discount-badge .big{ font-weight:800; font-size:28px; line-height:1; }
+.discount-badge .sub{ font-weight:700; font-size:12px; margin-top:4px; }
+.discount-badge .tiny{ font-size:10px; line-height:12px; margin-top:4px; }
+
+/* Decoraciones (puntos y cruces) */
+.deco-dots{
+  position:absolute; width:96px; height:56px;
+  background:radial-gradient(#9aa4b2 1.2px, transparent 1.2px) 0 0/12px 12px; opacity:.8;
+}
+.deco-plus{ position:absolute; width:18px; height:18px; color:#ef6b6b; }
+.deco-plus::before, .deco-plus::after{
+  content:""; position:absolute; background:currentColor; border-radius:2px;
+}
+.deco-plus::before{ width:18px; height:4px; left:0; top:7px; }
+.deco-plus::after{ width:4px; height:18px; left:7px; top:0; }
+
+/* Franja azul con redes */
+.blue-band{ background:#7d94bf; }
+.social-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:36px; height:36px; border-radius:9999px; color:#fff; background:#2b3a5c;
+  box-shadow:0 4px 12px rgba(0,0,0,.15);
+}
+.social-btn:hover{ filter:brightness(1.1); }
+
+/* ================== LAYOUT SECCIONES (TÍTULO + SUB) ================== */
+.section { padding: 6rem 0; }
+.section .section-head { margin-bottom: 2rem; }
+.section .section-title {
+  font-weight: 800; color: #0f172a; line-height: 1.1;
+  font-size: 2rem;
+}
+@media (min-width:640px){ .section .section-title{ font-size: 2.25rem; } }
+.section .section-sub { margin-top:.5rem; color:#475569; font-size:1.05rem; }
+
+/* contenedor ancho consistente para secciones */
+.container-xl { max-width: 80rem; margin: 0 auto; padding: 0 1rem; }
+@media (min-width:640px){ .container-xl{ padding: 0 1.5rem; } }
+
+/* =============== SUCURSALES – tarjetas refinadas =============== */
+.branches-grid { display:grid; gap:1.5rem; }
+@media (min-width:640px){ .branches-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (min-width:1024px){ .branches-grid{ grid-template-columns: repeat(3, minmax(0,1fr)); } }
+
+.branch-card{
+  position:relative;
+  border-radius:16px;
+  padding:1.5rem;
+  border:1px solid rgba(15,23,42,.06);
+  background:
+    radial-gradient(1200px 1200px at 120% -10%, rgba(125,148,191,.25) 0%, transparent 40%),
+    radial-gradient(1200px 1200px at -20% 130%, rgba(250,115,137,.18) 0%, transparent 40%),
+    linear-gradient(180deg, #fff, #fff);
+  box-shadow:0 10px 28px rgba(2,6,23,.06);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  backdrop-filter: saturate(120%) blur(2px);
+  isolation:isolate;
+}
+
+.branch-card::before{ /* brillo sutil */
+  content:""; position:absolute; inset:-1px; border-radius:16px;
+  background: linear-gradient(120deg, rgba(255,255,255,.35), rgba(255,255,255,0) 25%, rgba(255,255,255,.25) 50%, rgba(255,255,255,0) 75%);
+  pointer-events:none; z-index:-1; mask:linear-gradient(#000, transparent 60%);
+}
+
+.branch-card:hover{
+  transform: translateY(-4px);
+  box-shadow:0 18px 40px rgba(2,6,23,.12);
+  border-color: rgba(14,116,144,.25); /* cyan-700 */
+}
+
+.branch-card h3{
+  margin:0; font-weight:700; color:#0f172a; font-size:1.05rem;
+  letter-spacing:.1px;
+}
+
+.chip{
+  display:inline-flex; align-items:center; gap:.4rem;
+  border-radius:9999px; padding:.35rem .6rem; font-size:.72rem; font-weight:700;
+  background:#ecfeff; color:#0e7490; border:1px solid #cffafe;
+}
+.chip::before{
+  content:""; width:8px; height:8px; border-radius:9999px; background:#22d3ee;
+}
+
+.branch-row{ display:flex; align-items:flex-start; gap:.75rem; }
+.branch-row + .branch-row{ margin-top:.75rem; }
+.branch-row svg{ width:20px; height:20px; color:#0e7490; flex:0 0 auto; }
+.branch-row dt{ margin:0; }
+.branch-row dd{ margin:0; color:#475569; }
+
+.branch-actions{
+  display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1.1rem;
+}
+.btn{
+  display:inline-flex; 
+  align-items:center; gap:.5rem;
+  height:40px; padding:0 1rem; border-radius:12px; font-weight:700; font-size:.875rem;
+  text-decoration:none; user-select:none;
+  transition: transform .2s, box-shadow .2s, background .2s, border-color .2s;
+  font-size: 1rem;           /* antes ~0.875rem */
+
+}
+.btn:focus-visible{ outline:3px solid #a5f3fc; outline-offset:2px; border-radius:14px; }
+
+.btn-ghost {
+  background: #fff;
+  color: #0e7490;                    /* 🔹 tono cian coherente con la interfaz */
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(2,6,23,.04);
+  transition: all 0.25s ease;
+}
+
+.btn-ghost:hover {
+  background: #ecfeff;               /* fondo cian muy claro */
+  color: #0e7490;                    /* mantiene color de texto */
+  border-color: #bae6fd;             /* borde cian claro */
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(14,116,144,.12);
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,#fa7389, #ef6b6b 70%); color:#fff; border:1px solid transparent;
+  box-shadow:0 6px 16px rgba(239,107,107,.25);
+  font-size: 1rem;           /* antes ~0.875rem */
+}
+.btn-primary:hover{ filter:saturate(1.05) brightness(1.02); transform:translateY(-1px); }
+
+.actions--icon .i{ width:18px; height:18px; display:inline-block; }
+.i-map{
+  background: conic-gradient(from 180deg at 50% 50%, #0ea5e9, #22d3ee, #06b6d4, #0ea5e9);
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="%23000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14"/><path d="M15 6v14"/></svg>') no-repeat center/contain;
+          mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="%23000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14"/><path d="M15 6v14"/></svg>') no-repeat center/contain;
+}
+.i-whatsapp{
+  background: radial-gradient(circle at 30% 20%, #22c55e, #16a34a);
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black"><path d="M.057 24l1.687-6.163A11.867 11.867 0 0112.02 0C18.617 0 24 5.383 24 12s-5.383 12-11.98 12a11.95 11.95 0 01-6.127-1.688L.057 24zM6.8 19.2a9.6 9.6 0 005.219 1.523C17.39 20.723 21.6 16.51 21.6 12S17.39 3.277 12.02 3.277c-5.37 0-9.58 4.213-9.58 9.6 0 1.84.52 3.555 1.516 5.043l-.968 3.54L6.8 19.2zm9.395-3.96c-.08-.133-.293-.213-.613-.373-.32-.16-1.9-.933-2.194-1.04-.293-.107-.507-.16-.72.16-.213.32-.827 1.04-1.014 1.253-.187.213-.373.24-.693.08-.32-.16-1.347-.493-2.567-1.573-.94-.84-1.573-1.88-1.76-2.2-.187-.32-.02-.493.14-.653.147-.147.32-.373.48-.56.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.72-1.733-.987-2.373-.26-.64-.52-.547-.72-.56l-.613-.013c-.2 0-.52.08-.787.373-.267.293-1.04 1.013-1.04 2.467 0 1.453 1.067 2.853 1.213 3.04.147.187 2.1 3.2 5.087 4.48.71.307 1.267.493 1.7.627.713.227 1.36.2 1.873.12.573-.086 1.9-.773 2.167-1.52.267-.747.267-1.387.187-1.52z"/></svg>') no-repeat center/contain;
+          mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black"><path d="M.057 24l1.687-6.163A11.867 11.867 0 0112.02 0C18.617 0 24 5.383 24 12s-5.383 12-11.98 12a11.95 11.95 0 01-6.127-1.688L.057 24zM6.8 19.2a9.6 9.6 0 005.219 1.523C17.39 20.723 21.6 16.51 21.6 12S17.39 3.277 12.02 3.277c-5.37 0-9.58 4.213-9.58 9.6 0 1.84.52 3.555 1.516 5.043l-.968 3.54L6.8 19.2zm9.395-3.96c-.08-.133-.293-.213-.613-.373-.32-.16-1.9-.933-2.194-1.04-.293-.107-.507-.16-.72.16-.213.32-.827 1.04-1.014 1.253-.187.213-.373.24-.693.08-.32-.16-1.347-.493-2.567-1.573-.94-.84-1.573-1.88-1.76-2.2-.187-.32-.02-.493.14-.653.147-.147.32-.373.48-.56.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.72-1.733-.987-2.373-.26-.64-.52-.547-.72-.56l-.613-.013c-.2 0-.52.08-.787.373-.267.293-1.04 1.013-1.04 2.467 0 1.453 1.067 2.853 1.213 3.04.147.187 2.1 3.2 5.087 4.48.71.307 1.267.493 1.7.627.713.227 1.36.2 1.873.12.573-.086 1.9-.773 2.167-1.52.267-.747.267-1.387.187-1.52z"/></svg>') no-repeat center/contain;
+}
+
+/* =============== SERVICIOS – chips =============== */
+/* ======= Servicios: hereda branch-card y ajusta interior ======= */
+.services-card { padding: 2rem; }               /* un poco más de respiro */
+.services-card .section-sub { margin-top:.25rem; color:#8fa7c9; }
+/* === Ajuste tipografía en los servicios destacados === */
+
+/* Aumenta tamaño y peso de texto dentro de los botones */
+
+/* En pantallas grandes aumenta un poco más */
+@media (min-width:1024px){
+  #servicios .btn-primary {
+    font-size: 1.15rem;
+    height: 56px;
+  }
+}
+
+/* Ajuste general del grid para acomodar botones más grandes */
+#servicios .services-grid {
+  gap: 1.25rem;
+}
+
+/* Grid de chips dentro del card */
+.services-grid{
+  display:grid; gap:12px; margin-top:1rem;
+}
+@media (min-width:640px){ .services-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (min-width:1024px){ .services-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+
+/* Chip de servicio con la misma paleta y hover que usamos en sucursales */
+.service-chip{
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  padding:1rem; border-radius:12px;
+  background:#fff;                          /* igual que .btn-ghost */
+  color:#0f172a;
+  border:1px solid #e2e8f0;
+  box-shadow:0 1px 2px rgba(2,6,23,.04);
+  font-weight:700;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+}
+.service-chip:hover{
+  transform:translateY(-3px);
+  background: linear-gradient(135deg, #ecfeff 0%, #ffffff 70%);  /* mismo hover cian suave */
+  border-color:#bae6fd;
+  box-shadow:0 10px 24px rgba(14,116,144,.14);
+}
+
+/* Dark mode coherente con sucursales */
+@media (prefers-color-scheme: dark){
+  .services-card{ border-color: rgba(255, 255, 255, 0.2); }
+  .service-chip{
+    background:rgba(255,255,255,.04);
+    color:#e5e7eb;
+    border-color:rgba(148,163,184,.2);
+  }
+  .service-chip:hover{
+    background: linear-gradient(135deg, rgba(236,254,255,.12) 0%, rgba(255,255,255,.06) 70%);
+    border-color:#67e8f9;
+  }
+}
+
+
+/* =============== CONTACTO – CTA reforzada =============== */
+.cta{
+  position:relative; overflow:hidden;
+  background:
+    radial-gradient(1200px 1200px at -10% 20%, rgba(125,148,191,.35) 0%, transparent 40%),
+    radial-gradient(1000px 1000px at 120% 120%, rgba(239,107,107,.35) 0%, transparent 45%),
+    linear-gradient(135deg, #111827 0%, #1f2937 60%, #1f2937 100%);
+  color:#fff; border-radius:16px; padding:2rem;
+  box-shadow:0 18px 40px rgba(2,6,23,.22);
+  border:1px solid rgba(255,255,255,.08);
+}
+.cta h3{ margin:0; font-weight:800; }
+.cta p{ margin:.4rem 0 0; color:#e2e8f0; }
+
+.btn-light{
+  display:inline-flex; align-items:center; gap:.5rem;
+  margin-top:1rem; padding:.8rem 1.1rem; border-radius:12px;
+  background:#fff; color:#075985; font-weight:800; border:1px solid #e2e8f0;
+  box-shadow:0 8px 18px rgba(255,255,255,.08), 0 1px 2px rgba(0,0,0,.06);
+  text-decoration:none;
+  transition: transform .2s, box-shadow .2s, filter .2s;
+}
+.btn-light:hover{ transform:translateY(-2px); filter:brightness(1.02); }
+
+/* ================== ADMIN PANEL REFINED ================== */
+
+/* Fondo general */
+.h-screen.w-screen {
+  background: linear-gradient(to bottom right, #ecfeff 0%, #ffffff 60%, #fef2f2 100%);
+}
+
+/* Sidebar mejor integrado con marca */
+aside {
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  box-shadow: 4px 0 12px rgba(2, 6, 23, 0.04);
+}
+.aside-brand {
+  background: linear-gradient(135deg, #ecfeff 0%, #fff 60%);
+}
+
+/* Panel principal más claro, con degradado sutil */
+.panel {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(14, 116, 144, 0.1); /* cian suave */
+  box-shadow: 0 8px 24px rgba(2, 6, 23, 0.06);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(2, 6, 23, 0.1);
+}
+
+/* Encabezado del panel */
+.panel-head {
+  background: radial-gradient(900px 500px at 100% -10%, rgba(250, 115, 137, 0.1) 0%, transparent 70%),
+              radial-gradient(900px 500px at -10% 130%, rgba(14, 116, 144, 0.08) 0%, transparent 60%),
+              #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 1rem 1.5rem 1.25rem 1.5rem;
+}
+
+.panel-title {
+  color: #0f172a;
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+}
+
+.panel-sub {
+  color: #475569;
+  font-size: 0.95rem;
+  margin-top: 0.3rem;
+}
+
+/* Cuerpo del panel */
+.panel-body {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 0 0 16px 16px;
+}
+
+/* Inputs y buscadores */
+.panel-body input[type="text"],
+.panel-body input[type="search"] {
+  border: 1px solid #dbeafe;
+  border-radius: 0.75rem;
+  padding: 0.6rem 1rem;
+  background: #f8fafc;
+  color: #0f172a;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.panel-body input:focus {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 4px #bae6fd;
+}
+
+/* Botones principales */
+.btn-ui {
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #0f172a;
+  font-weight: 600;
+  padding: 0.6rem 1.1rem;
+  box-shadow: 0 2px 6px rgba(2, 6, 23, 0.05);
+  transition: all 0.25s ease;
+}
+
+.btn-ui:hover {
+  background: #ecfeff;
+  color: #0e7490;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(14, 116, 144, 0.1);
+}
+
+.btn-ui.primary {
+  background: linear-gradient(135deg, #fa7389 0%, #ef6b6b 70%);
+  color: #fff;
+  border: 1px solid transparent;
+  box-shadow: 0 6px 18px rgba(239, 107, 107, 0.25);
+}
+
+.btn-ui.primary:hover {
+  filter: saturate(1.05) brightness(1.02);
+}
+
+/* Tablas refinadas */
+.table-wrap {
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(2, 6, 23, 0.04);
+}
+
+thead th {
+  background: #f1f5f9;
+  color: #0f172a;
+  font-weight: 700;
+  padding: 0.8rem 1rem;
+  text-align: left;
+}
+
+tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+tbody tr:hover {
+  background: #ecfeff;
+  transition: background 0.25s ease;
+}
+
+/* Estado vacío elegante */
+.empty-state {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 2rem;
+  color: #475569;
+  text-align: center;
+  border: 1px dashed #bae6fd;
+  font-weight: 500;
+}
+
+/* Mejoras sidebar activas */
+.aside-link.is-active {
+  background: #cffafe;
+  color: #0e7490;
+  font-weight: 600;
+  border: 1px solid #a5f3fc;
+  box-shadow: 0 0 0 3px rgba(165, 243, 252, 0.4);
+}
+
+.aside-link:hover {
+  background: #ecfeff;
+  color: #0e7490;
+}
+
+/* Logout coherente */
+.aside-logout {
+  background: transparent;
+  color: #ef4444;
+  font-weight: 600;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.aside-logout:hover {
+  background: #fee2e2;
+  transform: translateX(3px);
+}
+
+/* ===== Reset y base ===== */
+html, body, #app { height: 100%; margin: 0; }
+:root{ --aside-w: 18rem; }
+
+/* ===== Shell del admin: grid aside + main ===== */
+.admin-shell{
+  min-height: 100vh;                      /* ocupa toda la ventana */
+  display: grid;
+  grid-template-columns: var(--aside-w) 1fr;
+  background: linear-gradient(to bottom right, #ecfeff 0%, #ffffff 60%, #fef2f2 100%);
+}
+@media (max-width: 768px){
+  .admin-shell{ grid-template-columns: 1fr; }
+}
+
+/* ===== Aside pegado que completa la página ===== */
+.admin-aside{
+  position: sticky;
+  top: 0;
+  height: 100vh;                          /* llena la ventana */
+  align-self: start;
+  overflow: hidden;                        /* el scroll vive en .aside-nav */
+  background: linear-gradient(180deg,#ffffff 0%, #fbfdff 60%, #f0fbff 100%);
+  border-right:1px solid rgba(2,6,23,.06);
+  box-shadow: 0 2px 14px rgba(2,6,23,.04);
+  display:flex; flex-direction:column;
+}
+
+/* Cabezal / marca */
+.aside-head{
+  padding: 18px 20px;
+  border-bottom:1px solid #f1f5f9;
+  background:
+    radial-gradient(800px 300px at 120% -20%, rgba(125,148,191,.18) 0%, transparent 50%),
+    radial-gradient(800px 300px at -30% 140%, rgba(250,115,137,.14) 0%, transparent 55%),
+    #fff;
+}
+.aside-head .brand{
+  margin:0; font-size:1.06rem; font-weight:800; color:#0f172a; letter-spacing:.2px;
+}
+.aside-head .brand-sub{
+  margin-top:4px; font-size:.75rem; color:#64748b; letter-spacing:.15px;
+}
+
+/* Zona navegable con scroll propio */
+.aside-nav{
+  flex: 1 1 auto;
+  overflow: auto;
+  padding: 10px;
+}
+.aside-nav::-webkit-scrollbar{ width:8px; }
+.aside-nav::-webkit-scrollbar-thumb{ background:#e5e7eb; border-radius:9999px; }
+.aside-nav::-webkit-scrollbar-thumb:hover{ background:#cbd5e1; }
+
+/* Separador y logout */
+.aside-sep{ height:1px; background:#eef2f7; margin:10px 6px 8px; border-radius:9999px; }
+.aside-logout{
+  display:flex; align-items:center; gap:.7rem;
+  width:100%; margin-top:6px;
+  padding:.6rem .75rem; border-radius:12px;
+  background:transparent; border:0; color:#e11d48;  /* rose-600 */
+  font-weight:700; cursor:pointer;
+  transition: background .2s, transform .2s, box-shadow .2s;
+}
+.aside-logout:hover{
+  background:#fff1f3; transform:translateX(2px);
+  box-shadow:0 2px 10px rgba(225,29,72,.10);
+}
+
+/* Links del menú */
+.aside-link{
+  position:relative;
+  display:flex; align-items:center; gap:.7rem;
+  padding:.58rem .72rem; border-radius:12px;
+  color:#334155; text-decoration:none; font-weight:600;
+  transition: transform .2s, background .2s, color .2s, box-shadow .2s;
+}
+.aside-ico{ font-size:1rem; line-height:1; opacity:.95; }
+.aside-text{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+.aside-link:hover{
+  background:#ecfeff;          /* cian muy claro */
+  color:#0e7490;               /* cian-700 */
+  transform: translateX(2px);
+  box-shadow: 0 2px 10px rgba(14,116,144,.10);
+}
+.aside-link.is-active{
+  color:#0e7490;
+  background: linear-gradient(180deg, #eafcff 0%, #ffffff 100%);
+  box-shadow: inset 0 0 0 1px #a5f3fc, 0 6px 14px rgba(14,116,144,.08);
+}
+.aside-link.is-active::before{
+  content:""; position:absolute; left:-6px; top:8px; bottom:8px; width:4px;
+  border-radius:9999px;
+  background: linear-gradient(180deg,#22d3ee,#06b6d4);
+}
+
+/* Foco accesible */
+.aside-link:focus-visible,
+.aside-logout:focus-visible{
+  outline:3px solid #a5f3fc; outline-offset:3px; border-radius:14px;
+}
+
+/* ===== Main con scroll independiente ===== */
+.admin-main{
+  overflow:auto;
+  padding: 1rem;                 /* puedes mantener tu p-4 md:p-6 */
+}
+
+/* ===== Panel (si quieres mantener tu card central) ===== */
+.panel{
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(14, 116, 144, 0.1);
+  box-shadow: 0 8px 24px rgba(2, 6, 23, 0.06);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.panel:hover{ transform: translateY(-2px); box-shadow: 0 12px 36px rgba(2,6,23,.1); }
+.panel-head{
+  background: radial-gradient(900px 500px at 100% -10%, rgba(250,115,137,.1) 0%, transparent 70%),
+              radial-gradient(900px 500px at -10% 130%, rgba(14,116,144,.08) 0%, transparent 60%),
+              #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 1rem 1.5rem 1.25rem 1.5rem;
+}
+.panel-title{ color:#0f172a; font-weight:800; font-size:1.35rem; letter-spacing:-.02em; margin:0; }
+.panel-sub{ color:#475569; font-size:.95rem; margin:.3rem 0 0; }
+.panel-body{ background:#fff; padding:1.5rem; }
+
+/* ===== Dark mode opcional ===== */
+@media (prefers-color-scheme: dark){
+  .admin-shell{ background:linear-gradient(180deg,#0b1220,#0f172a); }
+  .admin-aside{ background:linear-gradient(180deg,#0f172a,#0b1220); border-right-color:rgba(148,163,184,.18); }
+  .aside-head{ border-bottom-color:rgba(148,163,184,.2); background:linear-gradient(180deg,rgba(2,6,23,.7),rgba(2,6,23,.55)); }
+  .aside-head .brand{ color:#e5e7eb; }
+  .aside-head .brand-sub{ color:#94a3b8; }
+  .aside-link{ color:#cbd5e1; }
+  .aside-link:hover{ background:rgba(14,116,144,.18); color:#67e8f9; }
+  .aside-link.is-active{
+    background: linear-gradient(180deg, rgba(103,232,249,.15), rgba(255,255,255,.04));
+    box-shadow: inset 0 0 0 1px rgba(165,243,252,.7);
+    color:#67e8f9;
+  }
+  .aside-logout{ color:#fb7185; }
+  .aside-logout:hover{ background:rgba(251,113,133,.12); }
+}
+
+/* ===== Main con scroll independiente  MEDICOS===== */
+.admin-main{
+  overflow:auto;
+  padding: 1rem;                 /* puedes mantener tu p-4 md:p-6 */
+}
+/* ===== Panel (si quieres mantener tu card central) ===== */
+.panel{
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(14, 116, 144, 0.1);
+  box-shadow: 0 8px 24px rgba(2, 6, 23, 0.06);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.panel:hover{ transform: translateY(-2px); box-shadow: 0 12px 36px rgba(2,6,23,.1); }
+.panel-head{
+  background: radial-gradient(900px 500px at 100% -10%, rgba(250,115,137,.1) 0%, transparent 70%),
+              radial-gradient(900px 500px at -10% 130%, rgba(14,116,144,.08) 0%, transparent 60%),
+              #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 1rem 1.5rem 1.25rem 1.5rem;
+}
+.panel-title{ color:#0f172a; font-weight:800; font-size:1.35rem; letter-spacing:-.02em; margin:0; }
+.panel-sub{ color:#475569; font-size:.95rem; margin:.3rem 0 0; }
+.panel-body{ background:#fff; padding:1.5rem; }
+/* ===== Dark mode opcional ===== */
+@media (prefers-color-scheme: dark){
+  .admin-shell{ background:linear-gradient(180deg,#0b1220,#0f172a); }
+  .admin-aside{ background:linear-gradient(180deg,#0f172a,#0b1220); border-right-color:rgba(148,163,184,.18); }
+  .aside-head{ border-bottom-color:rgba(148,163,184,.2); background:linear-gradient(180deg,rgba(2,6,23,.7),rgba(2,6,23,.55)); }
+  .aside-head .brand{ color:#e5e7eb; }
+  .aside-head .brand-sub{ color:#94a3b8; }
+  .aside-link{ color:#cbd5e1; }
+  .aside-link:hover{ background:rgba(14,116,144,.18); color:#67e8f9; }
+  .aside-link.is-active{
+    background: linear-gradient(180deg, rgba(103,232,249,.15), rgba(255,255,255,.04));
+    box-shadow: inset 0 0 0 1px rgba(165,243,252,.7);
+    color:#67e8f9;
+  }
+  .aside-logout{ color:#fb7185; }
+  .aside-logout:hover{ background:rgba(251,113,133,.12); }
+}
+/* ====== BASE PARA TODOS LOS MÓDULOS ====== */
+.modulo-panel {
+  padding: 1.5rem;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+/* Cabecera */
+.modulo-header {
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+}
+.modulo-header h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-accent);
+}
+.modulo-header p {
+  color: #475569;
+  font-size: 0.95rem;
+}
+/* Toolbar (acciones y filtros) */
+/* ===========================================================
+   🔍 MEJORA VISUAL DEL BLOQUE DE BÚSQUEDA Y BOTONES
+   =========================================================== */
+.modulo-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 18px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+/* === INPUT DE BÚSQUEDA === */
+.modulo-toolbar label {
+  position: relative;
+  flex: 1 1 300px;
+}
+.modulo-toolbar input {
+  width: 100%;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 0.65rem 1rem 0.65rem 2.2rem;
+  font-size: 0.95rem;
+  color: #1e293b;
+  background: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+.modulo-toolbar input::placeholder {
+  color: #94a3b8;
+}
+.modulo-toolbar input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 25%, transparent);
+  background: #fff;
+  outline: none;
+}
+/* Ícono dentro del input */
+.modulo-toolbar label svg {
+  position: absolute;
+  top: 50%;
+  left: 0.8rem;
+  transform: translateY(-50%);
+  color: var(--color-accent);
+  opacity: 0.7;
+}
+/* === BOTONES === */
+.modulo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 14px;
+  padding: 0.6rem 1.1rem;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+/* Botón principal */
+.modulo-btn.primary {
+  background: linear-gradient(135deg, var(--color-accent) 0%, color-mix(in srgb, var(--color-accent) 85%, #ffffff) 100%);
+  color: #fff;
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--color-accent) 35%, transparent);
+}
+.modulo-btn.primary:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+/* Botón secundario */
+.modulo-btn.ghost {
+  background: white;
+  border-color: color-mix(in srgb, var(--color-accent) 40%, #dbeafe);
+  color: var(--color-accent);
+}
+.modulo-btn.ghost:hover {
+  background: color-mix(in srgb, var(--color-accent) 8%, white);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 20%, transparent);
+}
+/* Animación ligera */
+.modulo-btn:active {
+  transform: scale(0.98);
+}
+
+/* 🩺 Médicos */
+.modulo-medicos {
+  --color-accent: #06b6d4; /* cian */
+}
+/* 🧑‍💼 Secretarias */
+.modulo-secretarias {
+  --color-accent: #8b5cf6; /* violeta */
+}
+/* 🧬 Especialidades */
+.modulo-especialidades {
+  --color-accent: #10b981; /* esmeralda */
+}
+
+
+/* ===== MÓDULO A PANTALLA COMPLETA ===== */
+.modulo-full{
+  /* El contenedor del módulo debe poder estirarse */
+  min-height: 100vh; /* ajusta si tu layout tiene header fijo/padding */
+  display: flex;
+  flex-direction: column;
+}
+/* Contenido interno: header arriba + resto que crece */
+.modulo-content{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Opcional: quita márgenes externos del panel si quieres
+   que realmente “llene” al borde del main */
+.admin-main > .modulo-panel.modulo-full{
+  margin: 0;
+}
+
+/* =============================== */
+/* === MODAL MÉDICO MEJORADO ==== */
+/* =============================== */
+/* =========================================================
+   MODAL MÉDICO — versión refinada (modo claro)
+   ========================================================= */
+:root{
+  /* Paleta base */
+  --slate-950:#020617; --slate-900:#0f172a; --slate-800:#1e293b;
+  --slate-700:#334155; --slate-600:#475569; --slate-500:#64748b;
+  --slate-400:#94a3b8; --slate-300:#cbd5e1; --slate-200:#e5e7eb;
+  --slate-100:#f1f5f9; --slate-50:#f8fafc; --white:#fff;
+
+  /* Marca/acciones */
+  --brand-50:#ecfeff; --brand-100:#cffafe; --brand-200:#a5f3fc;
+  --brand-400:#22d3ee; --brand-500:#06b6d4;
+
+  --ok-500:#10b981; --ok-600:#059669;
+  --danger-50:#fee2e2; --danger-200:#fecaca; --danger-600:#dc2626; --danger-700:#b91c1c;
+
+  /* Dimensiones */
+  --radius-lg:16px; --radius-md:12px;
+  --pad-x:1.5rem; --pad-y:1.25rem;
+  --shadow-lg:0 22px 55px rgba(15,23,42,.12), 0 6px 18px rgba(2,6,23,.06);
+  --shadow-btn:0 6px 14px rgba(16,185,129,.22);
+  --focus-ring:0 0 0 3px rgba(6,182,212,.28);
+}
+
+/* ---------- Card ---------- */
+.modal-card{
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--slate-300);
+  background:
+    radial-gradient(1200px 500px at 110% -20%, rgba(165,243,252,.18) 0%, transparent 70%),
+    radial-gradient(1200px 500px at -20% 130%, rgba(203,213,225,.22) 0%, transparent 65%),
+    linear-gradient(180deg, var(--slate-50) 0%, #eef2f7 100%);
+  box-shadow: var(--shadow-lg);
+  color: var(--slate-900);
+}
+.modal-card,
+.modal-body,
+.modulo-medicos,
+.modulo-medicos .vgt-wrap {
+  min-width: 0;          /* clave si hay contenedores flex */
+}
+/* ---------- Header ---------- */
+.modal-head{
+  padding: var(--pad-y) var(--pad-x);
+  background: linear-gradient(135deg, #e8f6ff 0%, var(--slate-50) 100%);
+  border-bottom: 1px solid var(--slate-300);
+}
+.modal-head h2{
+  margin:0; font-weight:800; letter-spacing:-.015em;
+  color: var(--slate-900);
+}
+.modal-head p{
+  margin:.35rem 0 0; color: var(--slate-600);
+}
+
+/* ---------- Body ---------- */
+.modal-body{
+  padding: calc(var(--pad-y) + .25rem) var(--pad-x);
+  background: linear-gradient(180deg, var(--white) 0%, var(--slate-50) 100%);
+  max-height: 70vh; overflow:auto;
+  scrollbar-width: thin; scrollbar-color: var(--slate-300) transparent;
+}
+.modal-body::-webkit-scrollbar{ width:8px; }
+.modal-body::-webkit-scrollbar-thumb{ background: var(--slate-300); border-radius:9999px; }
+
+/* ---------- Fields ---------- */
+.modal-body label{
+  color: var(--slate-700); font-weight:700; font-size:.92rem; letter-spacing:.2px;
+}
+.modal-body input,
+.modal-body select,
+.modal-body textarea{
+  width:100%; margin-top:.35rem;
+  border:1px solid var(--slate-300);
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding:.65rem .85rem;
+  color: var(--slate-900);
+  transition:border-color .2s, box-shadow .2s, background .2s, transform .05s;
+}
+.modal-body input:hover,
+.modal-body select:hover,
+.modal-body textarea:hover{ border-color:#a7c5f6; }
+.modal-body input:focus,
+.modal-body select:focus,
+.modal-body textarea:focus{
+  border-color: var(--brand-500);
+  box-shadow: var(--focus-ring);
+  outline: none;
+}
+
+/* VueSelect (v3) — integra con inputs */
+:deep(.vselect){
+  border:1px solid var(--slate-300);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  min-height: 44px;
+  display:flex; align-items:center;
+  transition: border-color .2s, box-shadow .2s;
+}
+:deep(.vselect:hover){ border-color:#a7c5f6; }
+:deep(.vselect:focus-within){ border-color:var(--brand-500); box-shadow: var(--focus-ring); }
+:deep(.vselect__input),
+:deep(.vselect__single-value),
+:deep(.vselect__placeholder){ padding:0 .85rem; color: var(--slate-800); }
+
+/* Mensaje de ayuda / error (si lo usas) */
+.form-help{ color: var(--slate-500); font-size:.85rem; margin-top:.25rem; }
+.form-error{ color: var(--danger-700); font-weight:600; }
+
+/* ---------- Footer ---------- */
+.modal-foot{
+  position: sticky; bottom:0;
+  padding: var(--pad-y) var(--pad-x);
+  background: rgba(248,250,252,.92);
+  backdrop-filter: blur(6px);
+  border-top:1px solid var(--slate-300);
+  display:flex; justify-content:flex-end; gap:.6rem;
+}
+
+/* ---------- Botones ---------- */
+.btn-ghost{
+  appearance:none; border:1px solid var(--slate-300);
+  background: var(--white); color: var(--slate-700);
+  border-radius: var(--radius-md);
+  padding:.62rem 1.1rem; font-weight:700;
+  transition:transform .15s, box-shadow .2s, background .2s, border-color .2s;
+}
+.btn-ghost:hover{ background: var(--slate-50); transform: translateY(-1px); }
+.btn-ghost:focus-visible{ outline: none; box-shadow: var(--focus-ring); }
+
+/* Variación “Cancelar” */
+.btn-ghost.btn-cancel{
+  color: var(--danger-700); border-color: var(--danger-200);
+}
+.btn-ghost.btn-cancel:hover{
+  background: var(--danger-50); border-color: var(--danger-200);
+  box-shadow: 0 6px 12px rgba(220,38,38,.12);
+}
+
+/* =======================================================
+   TABLA — Módulo Médicos (VueGoodTable)
+   Tema claro, acento azul-cian y contraste mejorado
+   ======================================================= */
+
+/* ---------- Contenedor base ---------- */
+.modulo-medicos .vgt-wrap {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+  overflow-x: auto;      /* scroll si no cabe */
+  -webkit-overflow-scrolling: touch;
+}
+
+.modulo-medicos .vgt-table {
+  width: 100%;
+  table-layout: fixed;   /* fuerza distribución y evita "crecimiento" */
+}
+.modulo-medicos .vgt-table thead th,
+.modulo-medicos .vgt-table tbody td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* ---------- Encabezado (thead) ---------- */
+.modulo-medicos .vgt-table thead th {
+  background: linear-gradient(180deg, #b1e2eb 0%, #b1eefe 100%);
+  color: #2c525d;
+  font-weight: 800;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  padding: 0.65rem 0.8rem;
+  vertical-align: middle;
+  border-bottom: 2px solid #0e7490; /* borde inferior más oscuro */
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajuste de iconos de ordenamiento (flechas) */
+.modulo-medicos .vgt-table thead th.sorting:after,
+.modulo-medicos .vgt-table thead th.sorting-asc:after,
+.modulo-medicos .vgt-table thead th.sorting-desc:after {
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.modulo-medicos .vgt-table thead th.sorting:after {
+  border-top: 6px solid rgba(255, 255, 255, 0.6);
+}
+.modulo-medicos .vgt-table thead th.sorting-asc:after {
+  border-bottom: 6px solid #ffffff;
+  border-top: none;
+}
+.modulo-medicos .vgt-table thead th.sorting-desc:after {
+  border-top: 6px solid #ffffff;
+}
+
+/* ---------- Cuerpo ---------- */
+.modulo-medicos .vgt-table tbody td {
+  padding: 0.7rem 0.9rem;
+  font-size: 0.92rem;
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.modulo-medicos .vgt-table tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.modulo-medicos .vgt-table tbody tr:hover {
+  background: #e0f7fa; /* azul cielo muy suave */
+  transition: background 0.25s ease;
+}
+
+/* ---------- Acciones ---------- */
+.modulo-medicos .row-action {
+  border: 1px solid #bfdbfe;         /* azul claro */
+  background: #ffffff;
+  color: #2563eb;                    /* azul medio */
+  border-radius: 10px;
+  padding: 0.35rem 0.6rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.05);
+}
+
+.modulo-medicos .row-action:hover {
+  background: #dbeafe;               /* azul muy claro */
+  color: #1e40af;                    /* azul más oscuro al hover */
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15);
+}
+.modulo-medicos .row-action--danger {
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+.modulo-medicos .row-action--danger:hover {
+  background: #fee2e2;
+  color: #7f1d1d;
+}
+
+/* ---------- Estado vacío ---------- */
+.modulo-medicos .vgt-table .vgt-center-align,
+.modulo-medicos .vgt-table .vgt-left-align .vgt-text {
+  color: #475569;
+}
+.modulo-medicos .vgt-wrap__actions-footer + .vgt-table .vgt-center-align {
+  padding: 1.2rem 0.75rem;
+  border-top: 1px dashed rgba(14, 165, 233, 0.35);
+  background: #ffffff;
+}
+.table{
+  margin-top: 50px;
+}
+
+/* ---------- Footer / Paginación compacta ---------- */
+.modulo-medicos .vgt-wrap__footer {
+  background: #dff6fb;              /* tono celeste claro consistente */
+  border-top: 1px solid #a5e3f2;    /* borde más sutil */
+  padding: 0.35rem 0.75rem;         /* menos alto */
+  font-size: 0.7em;                /* 🔹 tamaño de letra reducido */
+  color: #0f172a;
+}
+.modulo-medicos .vgt-wrap__footer,
+.modulo-medicos .vgt-pagination {
+  flex-wrap: wrap;
+  row-gap: .25rem;
+}
+.modulo-medicos .vgt-table th:last-child,
+.modulo-medicos .vgt-table td:last-child {
+  width: 1%;
+  white-space: nowrap;
+}
+/* Texto "Rows per page" y paginación */
+.modulo-medicos .vgt-pagination {
+  font-size: 0.7em;                /* 🔹 igual al footer */
+  color: #334155;
+}
+
+/* Botones de paginación */
+.modulo-medicos .vgt-pagination .page-link {
+  border-radius: 6px !important;
+  border: 1px solid #bae6fd !important;
+  background: #ffffff !important;
+  color: #475569 !important;
+  padding: 0.25rem 0.55rem !important;
+  font-size: 0.7em !important;    /* 🔹 texto más pequeño */
+  transition: all 0.2s ease;
+}
+.modulo-medicos .vgt-pagination .page-link:hover {
+  background: #e0f2fe !important;
+  border-color: #38bdf8 !important;
+}
+.modulo-medicos .vgt-pagination .active .page-link {
+  background: #06b6d4 !important;
+  border-color: #06b6d4 !important;
+  color: #ffffff !important;
+}
+
+
+/* ---------- Scroll horizontal elegante ---------- */
+.modulo-medicos .vgt-wrap {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+.modulo-medicos .vgt-wrap::-webkit-scrollbar {
+  height: 8px;
+}
+.modulo-medicos .vgt-wrap::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+.modulo-medicos .vgt-wrap::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ---------- Micro-ajustes de densidad ---------- */
+@media (min-width: 1024px){
+  .modal-body .grid{ column-gap:1.25rem; row-gap:1rem; }
+}
+/* =======================================================
+   ESTILOS DE ESPECIALIDADES — Basados en módulo Médicos
+   ======================================================= */
+
+.modulo-especialidades {
+  --accent-50: #ecfdf5;
+  --accent-100: #d1fae5;
+  --accent-300: #6ee7b7;
+  --accent-500: #10b981;
+  --accent-600: #059669;
+}
+
+/* CABECERA */
+.modulo-especialidades .modulo-header h2 {
+  color: var(--accent-600);
+  font-weight: 900;
+  font-size: 1.8rem;
+}
+.modulo-especialidades .modulo-header p {
+  color: #475569;
+}
+
+/* TOOLBAR */
+.modulo-especialidades .modulo-toolbar input[type="search"] {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 0.6rem 2.4rem;
+  font-size: 0.95rem;
+  color: #0f172a;
+  background-color: #f9fafb;
+  transition: all 0.25s ease;
+}
+.modulo-especialidades .modulo-toolbar input[type="search"]:focus {
+  background-color: #fff;
+  border-color: var(--accent-500);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+  outline: none;
+}
+
+/* BOTONES */
+.modulo-especialidades .modulo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 12px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+/* Botón fantasma */
+.modulo-especialidades .modulo-btn.ghost {
+  background: #fff;
+  color: #10b981;
+  border: 1px solid #e2e8f0;
+}
+.modulo-especialidades .modulo-btn.ghost:hover {
+  background: rgba(126, 243, 204, 0.7); /* 0.7 es el nivel de transparencia */
+  color: #059669;
+  transform: translateY(-1px);
+}
+
+/* Botón principal esmeralda */
+.modulo-especialidades .modulo-btn.primary-emerald {
+  background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-600) 70%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 8px 16px rgba(16, 185, 129, 0.25);
+}
+.modulo-especialidades .modulo-btn.primary-emerald:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+/* =======================================================
+   TABLA — versión compacta y elegante para Especialidades
+   ======================================================= */
+.modulo-tabla-card{
+  border:1px solid #e5e7eb;
+  border-radius:16px;
+  background:#fff;
+  box-shadow: 0 14px 38px rgba(2,6,23,.06);
+  overflow:hidden;
+  margin-top: 50px;
+}
+
+/* ---------- Cabecera compacta ---------- */
+.modulo-tabla-card .vgt-table thead th{
+  background: linear-gradient(180deg, #c0e6cf 0%, #aef8c6 100%);
+  color:#0f172a;
+  font-weight:800;
+  font-size:.9rem;             /* más pequeña */
+  padding:.7rem .9rem;         /* menos alta */
+  border-bottom:1px solid #d1fae5; /* línea esmeralda clara */
+}
+.modulo-tabla-card .vgt-table thead th .sort-icon{
+  color:#10b981 !important;    /* icono de ordenación esmeralda */
+  opacity:.9;
+}
+
+/* ---------- Celdas / filas ---------- */
+.modulo-tabla-card .vgt-table tbody td{
+  padding:.85rem .95rem;
+  color:#334155;
+  border-color:#eef2f7;
+}
+.modulo-tabla-card .vgt-table tbody tr:nth-child(even){
+  background:#fbfdfc;          /* zebra muy sutil */
+}
+.modulo-tabla-card .vgt-table tbody tr:hover{
+  background:#ecfdf5;          /* hover esmeralda 50 */
+}
+
+/* ---------- Estado vacío ---------- */
+.modulo-tabla-card .modulo-empty{
+  margin:.75rem;
+  padding:1.1rem;
+  border:2px dashed #a7f3d0;
+  border-radius:12px;
+  color:#64748b;
+  background:#ffffff;
+  text-align:center;
+}
+
+/* ---------- Botones de acción por fila ---------- */
+.modulo-tabla-card .row-action{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:36px; height:36px;
+  border-radius:10px;
+  border:1px solid #d1fae5;    /* esmeralda claro */
+  background:#ffffff;
+  color:#059669;               /* esmeralda 600 */
+  transition:all .2s ease;
+}
+.modulo-tabla-card .row-action:hover{
+  background:#ecfdf5;
+  box-shadow:0 6px 12px rgba(16,185,129,.12);
+}
+.modulo-tabla-card .row-action--danger{
+  border-color:#fecaca;
+  color:#dc2626;
+}
+.modulo-tabla-card .row-action--danger:hover{
+  background:#fff1f2;
+  box-shadow:0 6px 12px rgba(220,38,38,.12);
+}
+
+/* ---------- Footer / paginación compacto ---------- */
+.modulo-tabla-card .vgt-wrap__footer{
+  background: linear-gradient(180deg, #c0e6cf 0%, #aef8c6 100%);
+  border-top:1px solid #d1fae5;
+  padding:.45rem .75rem;               /* menos alto */
+  font-size:0.7em;                    /* tipografía menor */
+  color:#0f172a;
+}
+
+/* Controles de paginación */
+.modulo-tabla-card .vgt-pagination{ font-size:.82rem; color:#334155; }
+.modulo-tabla-card .vgt-pagination .page-link{
+  border-radius:8px !important;
+  border:1px solid #d1fae5 !important;
+  background:#fff !important;
+  color:#0f172a !important;
+  padding:.25rem .55rem !important;
+  font-size:0.7em !important;
+  transition:all .2s ease;
+}
+.modulo-tabla-card .vgt-pagination .page-link:hover{
+  background:#ecfdf5 !important;
+  border-color:#34d399 !important;
+  color:#065f46 !important;
+}
+.modulo-tabla-card .vgt-pagination .active .page-link{
+  background:#10b981 !important;
+  border-color:#10b981 !important;
+  color:#fff !important;
+}
+
+/* ---------- Ajustes del contenedor VueGoodTable ---------- */
+.modulo-tabla-card .vgt-table{
+  border:0; border-radius:0; box-shadow:none;
+}
+.modulo-tabla-card .vgt-fixed-header, 
+.modulo-tabla-card .vgt-responsive{
+  background:#fff;
+}
+
+/* ======================================================
+   Modal Crear Especialidad — tema claro con acento esmeralda
+   ====================================================== */
+.esp-modal{
+  --esm-50:#ecfdf5; --esm-100:#d1fae5; --esm-200:#a7f3d0;
+  --esm-300:#6ee7b7; --esm-400:#34d399; --esm-500:#10b981; --esm-600:#059669;
+  --slate-900:#0f172a; --slate-700:#334155; --slate-600:#475569; --slate-300:#cbd5e1;
+
+  border:1px solid #e6f4ee;
+  background:
+    radial-gradient(900px 400px at 120% -20%, rgba(16,185,129,.10) 0%, transparent 70%),
+    radial-gradient(900px 400px at -20% 120%, rgba(203,213,225,.22) 0%, transparent 65%),
+    #ffffff;
+  box-shadow: 0 18px 45px rgba(2,6,23,.10);
+}
+
+/* Header con degradado suave */
+.esp-modal .esp-head{
+  background: linear-gradient(180deg, #f3fbf8 0%, #ecfdf5 100%);
+  border-bottom:1px solid var(--esm-100);
+}
+.esp-modal .esp-head h2{ color: var(--slate-900); font-weight: 800; }
+.esp-modal .esp-head p{ color: var(--slate-600); }
+
+/* Body: scrollbar sutil y padding cómodo */
+.esp-modal .esp-body{
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent;
+}
+.esp-modal .esp-body::-webkit-scrollbar{ width: 8px; }
+.esp-modal .esp-body::-webkit-scrollbar-thumb{ background:#cbd5e1; border-radius: 9999px; }
+
+/* Inputs / Textareas coherentes con acento esmeralda */
+.esp-modal input[type="text"],
+.esp-modal textarea{
+  border:1px solid #e2e8f0;
+  background:#fff;
+  color: var(--slate-900);
+  border-radius: 12px;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+.esp-modal input[type="text"]:hover,
+.esp-modal textarea:hover{
+  border-color: #d0e7de;
+}
+.esp-modal input[type="text"]:focus,
+.esp-modal textarea:focus{
+  border-color: var(--esm-500);
+  box-shadow: 0 0 0 3px rgba(16,185,129,.25);
+  outline: none;
+}
+
+/* Footer pegajoso con leve blur */
+.esp-modal .esp-foot{
+  position: sticky; bottom: 0; z-index: 5;
+  background: rgba(255,255,255,.85);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-top:1px solid var(--esm-100);
+}
+.esp-modal .esp-btn{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.6rem 1.1rem; border-radius:12px; font-weight:800;
+  transition: transform .16s ease, box-shadow .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+  user-select:none;
+}
+.esp-modal .esp-btn--primary {
+  background: #d1fae5;         /* verde claro */
+  color: #065f46;              /* texto verde oscuro */
+  border: 1px solid #a7f3d0;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 0.6rem 1.2rem;
+  transition: all 0.25s ease;
+}
+.esp-modal .esp-btn--primary:hover {
+  background: #86efac;         /* verde más saturado al hover */
+  color: #064e3b;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
+}
+.esp-modal .esp-btn--primary:active{ transform: translateY(0); }
+
+/* Estados deshabilitados heredados por :disabled */
+.esp-modal .esp-btn:disabled{
+  opacity:.6; cursor:not-allowed; box-shadow:none; transform:none;
+}
+/* ===========================
+   SECRETARIAS — Tema violeta
+   =========================== */
+/* =========================================================
+   SECRETARIAS — Card/Tabla compacta al estilo de la captura
+   (mismos layouts y tamaños, acentos en violeta)
+   ========================================================= */
+.modulo-secretarias{
+  --vio-50:#f5f3ff;
+  --vio-100:#ede9fe;
+  --vio-200:#ddd6fe;
+  --vio-300:#c4b5fd;
+  --vio-400:#a78bfa;
+  --vio-500:#8b5cf6;
+  --vio-600:#7c3aed;
+  --slate-900:#0f172a;
+  --slate-700:#334155;
+  --slate-600:#475569;
+  --slate-300:#cbd5e1;
+  --slate-200:#e5e7eb;
+  --ring:0 0 0 3px rgba(139,92,246,.22);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--slate-300);
+  
+}
+
+/* -------- Tarjeta general -------- */
+.modulo-secretarias .rounded-2xl.border{
+  border-color:var(--slate-200) !important;
+  border-radius:20px !important;
+  box-shadow:0 24px 56px rgba(2,6,23,.06) !important;
+  overflow:hidden;
+}
+
+/* -------- Header de la tabla (estilo barra sólida) -------- */
+.modulo-secretarias .vgt-table thead th{
+  background:linear-gradient(180deg, var(--vio-300) 0%, var(--vio-200) 100%) !important;
+  color:#0a0f1f !important;
+  font-weight:900 !important;
+  font-size:.92rem !important;
+  padding:.9rem 1rem !important;
+  border-bottom:2px solid var(--vio-400) !important;
+}
+.modulo-secretarias .vgt-table thead th .sort-icon{
+  color:var(--vio-600) !important;
+}
+
+/* -------- Filas / celdas -------- */
+.modulo-secretarias .vgt-table tbody td{
+  padding:1rem 1.05rem !important;
+  color:var(--slate-700) !important;
+  border-color:#eef2f7 !important;
+}
+.modulo-secretarias .vgt-table tbody tr:nth-child(even){
+  background:#fbfbff !important;
+}
+.modulo-secretarias .vgt-table tbody tr:hover{
+  background:var(--vio-50) !important;
+}
+
+/* -------- Footer/Paginación (barra sólida) -------- */
+.modulo-secretarias .vgt-wrap__footer{
+  background:linear-gradient(180deg, var(--vio-300) 0%, var(--vio-200) 100%) !important;
+  border-top:1px solid var(--vio-400) !important;
+  padding:.65rem .9rem !important;
+  color:#0a0f1f !important;
+  font-size:.9rem !important;
+}
+.modulo-secretarias .vgt-pagination .page-link{
+  border-radius:10px !important;
+  border:1px solid var(--vio-300) !important;
+  background:#fff !important;
+  color:var(--slate-700) !important;
+  padding:.35rem .65rem !important;
+  font-size:.85rem !important;
+}
+.modulo-secretarias .vgt-pagination .page-link:hover{
+  background:var(--vio-50) !important;
+  border-color:var(--vio-500) !important;
+  color:var(--vio-600) !important;
+}
+.modulo-secretarias .vgt-pagination .active .page-link{
+  background:var(--vio-500) !important;
+  border-color:var(--vio-500) !important;
+  color:#fff !important;
+}
+
+/* -------- Buscador y botones (mapeo a violeta) -------- */
+.modulo-secretarias input[type="text"],
+.modulo-secretarias input[type="search"]{
+  background:#fff; border:1px solid var(--slate-300);
+  border-radius:14px; padding:.7rem 1rem;
+  transition:border-color .2s, box-shadow .2s;
+}
+.modulo-secretarias input[type="text"]:focus,
+.modulo-secretarias input[type="search"]:focus{
+  border-color:var(--vio-500); box-shadow:var(--ring); outline:none;
+}
+
+/* Botón Buscar (antes cian) */
+.modulo-secretarias .border-cyan-600.text-cyan-700{
+  border-color:rgba(139,92,246,.35) !important;
+  color:var(--vio-600) !important; background:#fff !important;
+}
+.modulo-secretarias .border-cyan-600.text-cyan-700:hover{
+  background:var(--vio-50) !important; transform:translateY(-1px);
+}
+
+/* Botón Nuevo (antes esmeralda) */
+.modulo-secretarias .border-emerald-600.text-emerald-700{
+  border:none !important; color:#fff !important;
+  background:linear-gradient(135deg, var(--vio-500) 0%, var(--vio-600) 75%) !important;
+  box-shadow:0 10px 18px rgba(124,58,237,.22);
+}
+.modulo-secretarias .border-emerald-600.text-emerald-700:hover{
+  filter:brightness(1.05); transform:translateY(-1px);
+}
+
+/* Botón Actualizar (antes índigo) */
+.modulo-secretarias .border-indigo-600.text-indigo-700{
+  border-color:rgba(139,92,246,.45) !important;
+  color:var(--vio-600) !important; background:#fff !important;
+}
+.modulo-secretarias .border-indigo-600.text-indigo-700:hover{
+  background:var(--vio-50) !important;
+}
+
+/* -------- Acciones por fila -------- */
+.modulo-secretarias .inline-flex.items-center.justify-center.rounded-lg{
+  border:1px solid var(--vio-200) !important;
+  background:#fff !important; color:var(--vio-600) !important;
+  transition:all .2s ease;
+}
+.modulo-secretarias .inline-flex.items-center.justify-center.rounded-lg:hover{
+  background:var(--vio-50) !important;
+  box-shadow:0 6px 12px rgba(139,92,246,.12);
+}
+/* Eliminar */
+.modulo-secretarias .text-rose-600{
+  border-color:#fecaca !important; color:#dc2626 !important;
+}
+.modulo-secretarias .text-rose-600:hover{
+  background:#fff1f2 !important;
+  box-shadow:0 6px 12px rgba(220,38,38,.12);
+}
+
+
+/* ---------- Footer / paginación compacto ---------- */
+.modulo-secretarias .vgt-wrap__footer{
+  background:linear-gradient(180deg, var(--vio-100) 0%, #fff 100%) !important;
+  border-top:1px solid var(--vio-200) !important;
+  padding:.5rem .75rem !important;
+  font-size:.82rem !important;
+  color:var(--slate-700) !important;
+}
+.modulo-secretarias .vgt-pagination .page-link{
+  border-radius:8px !important;
+  border:1px solid var(--vio-200) !important;
+  background:#fff !important;
+  color:var(--slate-700) !important;
+  padding:.28rem .6rem !important;
+  font-size:.82rem !important;
+}
+.modulo-secretarias .vgt-pagination .page-link:hover{
+  background:var(--vio-50) !important;
+  border-color:var(--vio-400) !important;
+  color:var(--vio-600) !important;
+}
+.modulo-secretarias .vgt-pagination .active .page-link{
+  background:var(--vio-500) !important;
+  border-color:var(--vio-500) !important;
+  color:#fff !important;
+}
+
+/* =========================================================
+   MODALES SECRETARIAS — Tema violeta (Crear + Editar)
+   ========================================================= */
+.modal-violeta{
+  /* Paleta */
+  --vio-50:#f5f3ff; --vio-100:#ede9fe; --vio-200:#ddd6fe; --vio-300:#c4b5fd;
+  --vio-400:#a78bfa; --vio-500:#8b5cf6; --vio-600:#7c3aed;
+  --slate-900:#0f172a; --slate-700:#334155; --slate-600:#475569;
+  --slate-500:#64748b; --slate-400:#94a3b8; --slate-300:#cbd5e1; --slate-100:#f1f5f9;
+  --ring:0 0 0 3px rgba(139,92,246,.22);
+
+  border-radius:20px;
+  overflow:hidden;               /* asegura redondeos también en el header */
+  box-shadow:0 28px 64px rgba(2,6,23,.12);
+}
+
+/* ---------- Header / Footer suaves (sin marcos duros) ---------- */
+.modal-violeta > .border-b{
+  border-top-left-radius:20px;
+  border-top-right-radius:20px;
+  border-top:0;
+  border-bottom:1px solid rgba(139,92,246,.18);
+  background:
+    radial-gradient(900px 300px at 110% -20%, rgba(139,92,246,.08) 0%, transparent 70%),
+    linear-gradient(180deg,#ffffff 0%, #fafaff 100%);
+}
+
+.modal-violeta > .border-t{
+  background: linear-gradient(180deg,#ffffff 0%, #fafaff 100%);
+  box-shadow: inset 0 1px 0 rgba(139,92,246,.14);
+}
+
+/* ---------- Secciones del formulario (sin recuadros internos) ---------- */
+.modal-violeta .form-section{
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* ---------- Etiquetas ---------- */
+.modal-violeta label{
+  color: var(--slate-700);
+  font-weight: 600;
+  font-size: .9rem;
+  letter-spacing: .1px;
+}
+.modal-violeta .label-required::after{
+  content:" *";
+  color:#ef4444;
+  font-weight:800;
+}
+
+/* ---------- Inputs / Textarea / Select nativo ---------- */
+.modal-violeta input[type="text"],
+.modal-violeta input[type="email"],
+.modal-violeta input[type="tel"],
+.modal-violeta input[type="date"],
+.modal-violeta textarea,
+.modal-violeta select{
+  border:1px solid var(--slate-300);
+  background:#fff;
+  color:var(--slate-900);
+  border-radius:12px;
+  height:44px;
+  padding:.65rem .8rem;
+  line-height:1.2;
+  transition:border-color .2s, box-shadow .2s, background .2s;
+  box-shadow:none !important;
+}
+.modal-violeta textarea{ min-height:92px; height:auto; }
+.modal-violeta input:hover,
+.modal-violeta textarea:hover,
+.modal-violeta select:hover{ border-color:#b9c3d0; }
+.modal-violeta input:focus,
+.modal-violeta textarea:focus,
+.modal-violeta select:focus{
+  border-color:var(--vio-500);
+  box-shadow:var(--ring);
+  outline:none;
+}
+
+/* Select nativo: caret consistente */
+.modal-violeta select{
+  appearance:none; -webkit-appearance:none; -moz-appearance:none;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 20 20' fill='none' stroke='%2394a3b8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 8 10 12 14 8'/></svg>");
+  background-repeat:no-repeat;
+  background-position:right .75rem center;
+  background-size:14px 14px;
+  padding-right:2.2rem;
+}
+
+/* Estados de validación opcionales */
+.modal-violeta .is-invalid{ border-color:#fca5a5 !important; box-shadow:0 0 0 3px rgba(239,68,68,.12); }
+.modal-violeta .is-valid  { border-color:#86efac !important; box-shadow:0 0 0 3px rgba(34,197,94,.12); }
+
+/* =========================================================
+   Combobox (vue3-select-component)
+   ========================================================= */
+
+/* Contenedor alineado al resto de campos */
+/* ============================
+   FIX — Combobox sin “pastilla”
+   (vue3-select-component)
+   Aplica a Crear y Editar (modal-violeta)
+   ============================ */
+
+/* 1) Oculta cualquier adorno/“leading pill” que el componente inserte */
+.modal-violeta .vsc-container .vsc-leading,
+.modal-violeta .vsc-container .vsc-control--start,
+.modal-violeta .vsc-container .vsc-chip,
+.modal-violeta .vsc-container .vsc-tag,
+.modal-violeta .vsc-container .vsc-avatar,
+.modal-violeta .vsc-container [class*="leading"],
+.modal-violeta .vsc-container [class*="prefix"],
+.modal-violeta .vsc-container [class*="affix"],
+.modal-violeta .vsc-container [class*="adorn"]{
+  display: none !important;
+  width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+/* 2) Elimina pseudo-elementos que algunos temas usan para la “cápsula” */
+.modal-violeta .vsc-container *::before,
+.modal-violeta .vsc-container *::after{
+  content: none !important;
+}
+
+/* 3) Normaliza el área de entrada del single select */
+.modal-violeta .vsc-container .vsc-single{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: .55rem .75rem !important; /* alínea con tus inputs */
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* 4) Input/placeholder planos y sin bordes internos */
+.modal-violeta .vsc-container .vsc-input,
+.modal-violeta .vsc-container .vsc-placeholder{
+  font-size: .92rem;
+  background: transparent !important;
+  color: var(--slate-900);
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* 5) Contenedor con el mismo look de los inputs del formulario */
+.modal-violeta .vsc-container{
+  border: 1px solid var(--slate-300);
+  border-radius: 12px;
+  background: #fff !important;
+  color: var(--slate-900);
+  min-height: 44px;
+  padding: 0;
+  display: flex; align-items: center;
+  transition: border-color .2s, box-shadow .2s;
+  box-shadow: none !important;
+}
+.modal-violeta .vsc-container:focus-within{
+  border-color: var(--vio-500);
+  box-shadow: var(--ring);
+}
+
+/* 6) Indicador ▼ plano y con color al foco */
+.modal-violeta .vsc-indicator{
+  color: var(--slate-500);
+  margin-right: .6rem;
+  transition: color .2s;
+}
+.modal-violeta .vsc-container:focus-within .vsc-indicator{
+  color: var(--vio-500);
+}
+
+/* 7) Menú y opciones (coherentes con el tema violeta) */
+.modal-violeta .vsc-menu{
+  border-radius: 10px !important;
+  margin-top: 4px;
+  background: #fff;
+  border: 1px solid var(--vio-100) !important;
+  box-shadow: 0 10px 20px rgba(15,23,42,.08) !important;
+}
+.modal-violeta .vsc-option{
+  padding: .5rem .7rem;
+  font-size: .92rem;
+  background: transparent !important;
+}
+.modal-violeta .vsc-option:hover{ background: var(--vio-50) !important; }
+.modal-violeta .vsc-option.is-selected{
+  background: var(--vio-100) !important;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   Botones (coherencia con el tema)
+   ========================================================= */
+.modal-violeta .btn-ghost.btn-cancel{
+  border:1px solid #fecaca !important;
+  color:#dc2626 !important;
+  background:#fff !important;
+  border-radius:14px;
+  padding:.6rem 1.1rem; font-weight:800;
+}
+.modal-violeta .btn-ghost.btn-cancel:hover{
+  background:#fff1f2 !important;
+}
+
+/* Botón principal suave en violeta */
+.modal-violeta .btn-save{
+  border:none !important;
+  color:#fff !important;
+  background:linear-gradient(135deg, var(--vio-300) 0%, var(--vio-400) 85%) !important;
+  box-shadow:0 6px 14px rgba(167,139,250,.25);
+  border-radius:14px;
+  padding:.6rem 1.1rem; font-weight:800;
+  transition:transform .15s ease, filter .15s ease, box-shadow .2s ease;
+  min-width:150px;
+}
+.modal-violeta .btn-save:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.08);
+  background:linear-gradient(135deg, var(--vio-400) 0%, var(--vio-500) 85%) !important;
+}
+.modal-violeta .btn-save:disabled{
+  opacity:.7; box-shadow:none;
+  background:linear-gradient(135deg, var(--vio-200) 0%, var(--vio-300) 85%) !important;
+  color:#f1f5f9 !important;
+}
+
+/* =========================================================
+   Scroll del body del modal
+   ========================================================= */
+.modal-violeta .max-h-\[70vh\]{
+  scrollbar-width:thin;
+  scrollbar-color: var(--vio-300) transparent;
+}
+.modal-violeta .max-h-\[70vh\]::-webkit-scrollbar{ width:10px; height:10px; }
+.modal-violeta .max-h-\[70vh\]::-webkit-scrollbar-thumb{ background:var(--vio-300); border-radius:9999px; }
+.modal-violeta .max-h-\[70vh\]::-webkit-scrollbar-track{ background:transparent; }
